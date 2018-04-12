@@ -4,6 +4,7 @@ namespace App\Model;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Model\Content
@@ -60,6 +61,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Content extends Model
 {
+    use SoftDeletes;
     protected $table = 'content';
     protected $guarded = [];
     //content-metas:Many-One

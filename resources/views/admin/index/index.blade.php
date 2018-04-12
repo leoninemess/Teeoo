@@ -122,6 +122,9 @@
                                     <dd>
                                         <a href="javascript:;" data-url="/Admin/content/" data-title="文章管理"> <i class="iconfont" data-icon="&#xe60f;">&#xe60f;</i> <span>文章管理</span> </a>
                                     </dd>
+                                    <dd>
+                                        <a href="javascript:;" data-url="/Admin/comment/" data-title="评论管理"> <i class="iconfont" data-icon="&#xe60f;">&#xe60f;</i> <span>评论管理</span> </a>
+                                    </dd>
                                 </dl>
                             </li>
                         </ul>

@@ -7,21 +7,6 @@
     <div class="layui-fluid larry-wrapper">
         <div class="layui-row layui-col-space30">
             <div class="layui-col-xs24">
-                <!--头部搜索-->
-            {{--<section class="panel panel-padding">--}}
-            {{--<form class="layui-form" action="">--}}
-            {{--<div class="layui-form">--}}
-            {{--<div class="layui-inline">--}}
-            {{--<div class="layui-input-inline">--}}
-            {{--<input class="layui-input" name="keyword" placeholder="关键字">--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--<div class="layui-inline">--}}
-            {{--<button lay-submit class="layui-btn layui-btn-primary" lay-filter="search">查找</button>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</form>--}}
-            {{--</section>--}}
 
             <!--列表-->
                 <section class="panel panel-padding">
@@ -85,11 +70,11 @@
                                             @if(is_null($val->deleted_at))
                                                 <a data-params='{"content": "/Admin/metas/edit/{{$val->id}}","type":"2", "title": "修改分类"}'
                                                    href="javascript:;"
-                                                   class="layui-btn-sm modal">修改</a>
-                                                <a href="/Admin/metas/destroy/{{$val->id}}" class="layui-btn-sm">删除</a>
+                                                   class="layui-btn-sm modal layui-badge layui-badge layui-bg-blue">修改</a>
+                                                <a href="/Admin/metas/destroy/{{$val->id}}" class="layui-btn-sm layui-badge">删除</a>
                                             @else
-                                                <a href="/Admin/metas/restore/{{$val->id}}" class="layui-btn-sm">恢复</a>
-                                                <a href="/Admin/metas/delete/{{$val->id}}" class="layui-btn-sm">彻底删除</a>
+                                                <a href="/Admin/metas/restore/{{$val->id}}" class="layui-btn-sm layui-bg-blue">恢复</a>
+                                                <a href="/Admin/metas/delete/{{$val->id}}" class="layui-btn-sm  layui-badge">彻底删除</a>
                                             @endif
                                         </td>
                                     </tr>

@@ -22,14 +22,27 @@
 //        "Tree" => "jiaxincui/closure-table",
 //        "LogViewer" => "arcanedev/log-viewer",
 //        "pjax" => "spatie/laravel-pjax",
+//        "xss"=>"voku/anti-xss",
 //    );
 //});
 
 Route::group(['middleware' => 'web', 'namespace' => 'Home'], function () {
     Route::get("/", "IndexController@index");
+    //文章详情页
     Route::get("archives/{slug}.html", "IndexController@archives");
     //限制每个ip每分钟只能评论三次
-    Route::post("comment/{post_id}", "IndexController@comment_create")->middleware(['middleware' => 'throttle:3,1']);
+    Route::post("comment/{post_id}", "IndexController@comment_create")->middleware(['middleware' => 'throttle:50,1']);
+    //清除当前用户的session
+    Route::get("logout/{id}", "IndexController@logout");
+    //分类下的文章
+    Route::get("logout/{id}", "IndexController@logout");
+    //标签下的文章
+    Route::get("logout/{id}", "IndexController@logout");
+    //页面
+    Route::group(['prefix' => 'page'], function () {
+
+    });
+
 });
 
 //不需要验证的路由
@@ -80,5 +93,18 @@ Route::group(["namespace" => "Admin", "prefix" => "Admin", "middleware" => "user
         //添加文章
         Route::get("add", "ContentController@add");
         Route::post("create", "ContentController@create");
+    });
+    //评论
+    Route::group(["prefix" => "comment"], function () {
+        //评论列表页
+        Route::get("/", "CommentController@index");
+
+        //软删除
+        Route::get("destroy/{id}", "CommentController@destroy");
+        //恢复软删除
+        Route::get("restore/{id}", "CommentController@restore");
+        //彻底删除
+        Route::get("delete/{id}", "CommentController@delete");
+
     });
 });

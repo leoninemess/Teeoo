@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\MestsRequests;
+use App\Model\Content;
 use App\Model\Metas;
 use App\Http\Controllers\Controller;
 
@@ -128,10 +129,18 @@ class MetasController extends Controller
         if ($de > 0) {
             return redirect("/Admin/metas")->with([
                     'message' => "请先删除子分类！",
-                    'icon' => '6'
+                    'icon' => '5'
                 ]
             );
         } else {
+            //如果该分类下存在文章
+            if (Content::where("metas_id", "=", $id)->count() > 0) {
+                return redirect("/Admin/metas")->with([
+                        'message' => "请您先删除该分类下的文章！！",
+                        'icon' => '5'
+                    ]
+                );
+            }
             $delete = Metas::destroy($id);
             if ($delete) {
                 return redirect("/Admin/metas")->with([

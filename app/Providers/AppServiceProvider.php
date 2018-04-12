@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Model\Metas;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,9 +16,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         \Carbon\Carbon::setLocale('zh');
-        $metas=Metas::all();
-        if ($metas){
-            view()->share('metas', $metas);
+        if(Schema::hasTable('metas')){
+            $metas=Metas::all();
+            if ($metas){
+                view()->share('metas', $metas);
+            }
         }
     }
 

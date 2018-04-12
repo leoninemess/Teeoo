@@ -16,6 +16,11 @@
     <link rel="stylesheet" type="text/css" href="/admin/js/layui/css/layui.css?v=2.2.2" media="all">
     <link rel="stylesheet" id="theme" type="text/css" href="/admin/css/blue/jqadmin.css?v=2.0.0-simple" media="all">
     @yield('css')
+    <style>
+        .editormd-code-toolbar > select{
+            display:inline;
+        }
+    </style>
 </head>
 
 <body>

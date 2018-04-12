@@ -122,6 +122,7 @@ return [
     'providers' => [
 
         Facuz\Theme\ThemeServiceProvider::class,
+        Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
         /*
          * Laravel Framework Service Providers...
          */
@@ -212,6 +213,7 @@ return [
 
 
         'Theme' => Facuz\Theme\Facades\Theme::class,
+        'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class,
 
 
     ],

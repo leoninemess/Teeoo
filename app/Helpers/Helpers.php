@@ -39,12 +39,10 @@ function set_Env(array $data)
 }
 function string_remove_xss($html) {
     preg_match_all("/\<([^\<]+)\>/is", $html, $ms);
-
     $searchs[] = '<';
     $replaces[] = '&lt;';
     $searchs[] = '>';
     $replaces[] = '&gt;';
-
     if ($ms[1]) {
         $allowtags = 'img|a|font|div|table|tbody|caption|tr|td|th|br|p|b|strong|i|u|em|span|ol|ul|li|blockquote';
         $ms[1] = array_unique($ms[1]);
@@ -54,7 +52,6 @@ function string_remove_xss($html) {
             $value = str_replace('&amp;', '_uch_tmp_str_', $value);
             $value = string_htmlspecialchars($value);
             $value = str_replace('_uch_tmp_str_', '&amp;', $value);
-
             $value = str_replace(array('\\', '/*'), array('.', '/.'), $value);
             $skipkeys = array('onabort','onactivate','onafterprint','onafterupdate','onbeforeactivate','onbeforecopy','onbeforecut','onbeforedeactivate',
                 'onbeforeeditfocus','onbeforepaste','onbeforeprint','onbeforeunload','onbeforeupdate','onblur','onbounce','oncellchange','onchange',
@@ -74,7 +71,6 @@ function string_remove_xss($html) {
         }
     }
     $html = str_replace($searchs, $replaces, $html);
-
     return $html;
 }
 
@@ -102,6 +98,7 @@ function string_htmlspecialchars($string, $flags = null) {
             }
         }
     }
-
     return $string;
 }
+
+

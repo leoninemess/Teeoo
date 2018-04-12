@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Model\Comment
@@ -33,11 +34,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Comment extends Model
 {
+    use SoftDeletes;
     protected $table = 'comments';
     protected $guarded = [];
     //comment-content:Many-One
-    public function content()
+    public function comment_content()
     {
-        return $this->belongsTo(Content::class);
+        return $this->belongsTo(Content::class,'content_id','id');
     }
 }

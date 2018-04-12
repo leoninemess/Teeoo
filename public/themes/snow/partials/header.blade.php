@@ -5,7 +5,7 @@
             <button class="mdui-btn mdui-btn-icon" id="menu"
                     mdui-drawer="{target:'#left-drawer',overlay:'false'}"><i class="mdui-icon material-icons">menu</i>
             </button>
-            <span class="mdui-typo-headline">Teeoo</span>
+            <div class="mdui-typo card-title"><h4>Teeoo</h4></div>
             <div class="mdui-toolbar-spacer"></div>
             <button class="mdui-btn mdui-btn-icon seai"><i class="mdui-icon material-icons"></i></button>
         </div>

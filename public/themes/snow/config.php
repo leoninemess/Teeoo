@@ -45,14 +45,14 @@ return array(
 
             $asset->cook('cdn', function($asset)
             {
-                $asset->add('jq', '//cdn.bootcss.com/jquery/2.0.0/jquery.min.js');
-                $asset->add('pjax', '//cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js');
-                $asset->add('mdui', '//cdn.bootcss.com/mdui/0.4.0/js/mdui.min.js');
-                $asset->add('mdui', '//cdn.bootcss.com/mdui/0.4.0/css/mdui.min.css');
-                $asset->add('NProgress', '//unpkg.com/nprogress@0.2.0/nprogress.js');
-                $asset->add('NProgress', '//unpkg.com/nprogress@0.2.0/nprogress.css');
-                $asset->add('nanobar', '//cdn.bootcss.com/nanobar/0.4.2/nanobar.min.js');
-                $asset->add('font', '//at.alicdn.com/t/font_579919_p94txrc53ciejyvi.css');
+                $asset->add('jq', 'https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js');
+                $asset->add('pjax', 'https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js');
+                $asset->add('mdui', 'https://cdn.bootcss.com/mdui/0.4.0/js/mdui.min.js');
+                $asset->add('mdui', 'https://cdn.bootcss.com/mdui/0.4.0/css/mdui.min.css');
+                $asset->add('NProgress', 'https://unpkg.com/nprogress@0.2.0/nprogress.js');
+                $asset->add('NProgress', 'https://unpkg.com/nprogress@0.2.0/nprogress.css');
+                $asset->add('nanobar', 'https://cdn.bootcss.com/nanobar/0.4.2/nanobar.min.js');
+                $asset->add('font', 'https://at.alicdn.com/t/font_579919_p94txrc53ciejyvi.css');
             });
 
              Theme::asset()->serve('cdn');

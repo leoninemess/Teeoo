@@ -4,8 +4,9 @@
         <h3>{{$content->title}}</h3>
         <div class="taptap">
             <div>
-                <span><i class="mdui-icon material-icons">check</i>View：<a>1  条评论</a></span>
-                <span><i class="mdui-icon material-icons">change_history</i>所属分类：<a href="/">{{$content->metas->types}}</a></span>
+                <span><i class="mdui-icon material-icons">check</i>View：<a>{{$content->commentsNum}} 条评论</a></span>
+                <span><i class="mdui-icon material-icons">change_history</i>所属分类：<a
+                            href="/">{{$content->metas->types}}</a></span>
                 <span>
                     <i class="mdui-icon material-icons">change_history</i>Tags：
                     @foreach($content->tags as $tag)
@@ -41,28 +42,37 @@
     <div class="mdui-container sibi shadow-2 mdui-typo">
         <div class="pageHead" id="respond-post-1">
             @if($content->commentsNum==0)
-                <h4>好桑心只有竟然没有人评论</h4>
-                @elseif($content->commentsNum>10)
+                <h4>好桑心竟然没有人评论</h4>
+            @elseif($content->commentsNum<5)
                 <h4>哎!终于有{{$content->commentsNum}}条评论了</h4>
-                @else
+            @else
                 <h4>有{{$content->commentsNum}}条评论了,不服有种你在评论一条啊</h4>
             @endif
             <div class="mdui-divider"></div>
             <div class="newBB mdui-col-md-12">
-                <form method="post" action="/comment/{{$content->id}}" style="width: 100%" role="form" id="comment_form">
+                <form method="post" action="/comment/{{$content->id}}" style="width: 100%" role="form"
+                      id="comment_form">
                     <div class="userIC">
-                        <div class="mdui-col-xs-12 mdui-col-md-3 getData-input" id="userName">
-                            <input type="text" placeholder="昵称" name="username" value="" required="">
-                        </div>
-                        <div class="mdui-col-xs-12 mdui-col-md-3 getData-input" id="mail">
-                            <input type="email" placeholder="邮箱" name="email" value="" required="">
-                        </div>
-                        <div class="mdui-col-xs-12 mdui-col-md-4 getData-input" id="urls">
-                            <input type="text" name="url" id="urls" placeholder="http://" value="">
-                        </div>
+                        @if(is_null(session('user_info')))
+                            <div class="mdui-col-xs-12 mdui-col-md-3 getData-input" id="userName">
+                                <input type="text" placeholder="昵称" name="username" value="" required="">
+                            </div>
+                            <div class="mdui-col-xs-12 mdui-col-md-3 getData-input" id="mail">
+                                <input type="email" placeholder="邮箱" name="email" value="" required="">
+                            </div>
+                            <div class="mdui-col-xs-12 mdui-col-md-4 getData-input" id="urls">
+                                <input type="text" name="url" id="urls" placeholder="http://" value="">
+                            </div>
+                        @else
+                            <p>登录身份:
+                                <a href="#">{{session('user_info')['username']}}</a>.
+                                <a href="/logout/{{$content->id}}" title="Logout">退出 » </a></p>
+                        @endif
                     </div>
                     <div class="mdui-col-xs-12 mdui-col-md-10 getData-input" id="content">
-                        <textarea name="content" id="textarea" class="textarea" placeholder="评论内容,支持Markdown语法" required=""></textarea>
+                        <textarea name="content" id="textarea" class="textarea"
+                                  placeholder="评论内容,支持Markdown语法,代码高亮请使用<pre><code class=‘language-你的语言’>你的内容</code></pre>"
+                                  required=""></textarea>
                     </div>
                     {!! csrf_field() !!}
                     <div class="mdui-col-xs-12 mdui-col-md-2" id="subBtn">
@@ -74,21 +84,24 @@
         </div>
         <div class="comments">
             @foreach($content->comments as $comments)
-                <div class="userBB mdui-col-md-12 shadow-1">
+                <div class="userBB mdui-col-md-12 shadow-12 mdui-hoverable">
                     <div class="colorBar"></div>
-                    <div class="userData" id="">
-                        <div class="userIcon">
-                            <div class="userName">
-                                <div class="name"><a href="http://typecho.org" rel="external nofollow">{{$comments->username}}</a></div>
-                                <div class="Jurisdiction">{{$comments->created_at->diffForHumans()}}</div>
+                    <div class="userData" id="comments-{{$comments->id}}">
+                        {{--{{ Gravatar::src('thomaswelton@me.com') }}--}}
+                        <div class="userIcon" style="width: 100px;height: 100px;border-radius: 50%;position: relative;background: url('{{ Gravatar::src('2365160465@qq.com') }}') no-repeat center / cover;" >
+                        <div class="userName">
+                            <div class="name">
+                                <a href="http://typecho.org" rel="external nofollow">{{$comments->username}}</a>
                             </div>
+                            <div class="Jurisdiction">{{$comments->created_at->diffForHumans()}}</div>
                         </div>
                     </div>
-                    <div class="userBB-Content">
-                        {!! htmlspecialchars_decode($comments->content)!!}
-                    </div>
                 </div>
-            @endforeach
+                <div class="userBB-Content mdui-text-left">
+                    {!! htmlspecialchars_decode($comments->content)!!}
+                </div>
         </div>
+        @endforeach
+    </div>
     </div>
 @endif
