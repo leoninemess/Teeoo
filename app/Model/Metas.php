@@ -38,6 +38,11 @@ use Jiaxincui\ClosureTable\Traits\ClosureTable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Metas whereTypesCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Metas whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\Metas onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\Metas withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\Metas withoutTrashed()
  */
 class Metas extends Model
 {

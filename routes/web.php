@@ -107,4 +107,16 @@ Route::group(["namespace" => "Admin", "prefix" => "Admin", "middleware" => "user
         Route::get("delete/{id}", "CommentController@delete");
 
     });
+    //设置
+    Route::group(["prefix" => "Setup"], function () {
+        //基本设置
+        Route::group(['prefix' => 'Basicsetup'], function () {
+
+        });
+        //评论设置
+        Route::group(['prefix'=>'Reviewsettings'],function (){
+
+        });
+        //
+    });
 });

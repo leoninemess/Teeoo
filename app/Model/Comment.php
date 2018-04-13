@@ -31,6 +31,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Comment whereUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Comment whereUsername($value)
  * @mixin \Eloquent
+ * @property int $is_blog 是否是博主回复：0不是,1是
+ * @property-read \App\Model\Content $comment_content
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\Comment onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Comment whereIsBlog($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\Comment withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\Comment withoutTrashed()
  */
 class Comment extends Model
 {
