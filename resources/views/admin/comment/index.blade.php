@@ -1,8 +1,8 @@
 @extends("layouts.app")
 
 @section("css")
+    <link rel="stylesheet" href="/admin/css/black/jqadmin.css">
     <link rel="stylesheet" type="text/css" href="/admin/css/main.css?v2.0.1-simple" media="all">
-    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_579919_o0mndrxy4tmlsor.css" media="all">
 @endsection
 @section('content')
     <div class="layui-fluid larry-wrapper">

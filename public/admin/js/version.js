@@ -11,4 +11,4 @@ layui.config({
     echarts: 'lib/echarts',
     webuploader: 'lib/webuploader',
     jqcitys: "jqmodules/jqcitys"
-})
+});

@@ -50,7 +50,6 @@ class ContentController extends Controller
      */
     public function create(Request $request)
     {
-        dump($request->post());
         //判断是否允许评论
         $criticism = array_key_exists("criticism", $request->post()) ? 1 : 2;
         //拆分tags

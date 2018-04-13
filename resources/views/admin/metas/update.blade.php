@@ -1,6 +1,7 @@
 @extends("layouts.app")
 
 @section("css")
+    <link rel="stylesheet" href="/admin/css/black/jqadmin.css">
     <link rel="stylesheet" type="text/css" href="/admin/css/main.css?v2.0.1-simple" media="all">
 @endsection
 @section('content')

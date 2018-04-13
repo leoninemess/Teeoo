@@ -14,7 +14,8 @@
     <!-- load css -->
     <link rel="stylesheet" type="text/css" href="/admin/css/font/iconfont.css?v=1.0.0" media="all">
     <link rel="stylesheet" type="text/css" href="/admin/js/layui/css/layui.css?v=2.2.2" media="all">
-    <link rel="stylesheet" id="theme" type="text/css" href="/admin/css/blue/jqadmin.css?v=2.0.0-simple" media="all">
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_579919_a1t0sl0emuzq6w29.css" media="all">
+    {{--<link rel="stylesheet" id="theme" type="text/css" href="/admin/css/blue/jqadmin.css?v=2.0.0-simple" media="all">--}}
     @yield('css')
     <style>
         .editormd-code-toolbar > select{

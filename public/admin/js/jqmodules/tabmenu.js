@@ -44,7 +44,7 @@ layui.define(['jquery', 'jqelem'], function(exports) {
             $container = $('' + config.item + ''),
             filter = $container.attr('lay-filter');
         if (filter === undefined || filter === '') {
-            console.log('错误:请设置Tab菜单选项卡属性lay-filter过滤器');
+            // console.log('错误:请设置Tab菜单选项卡属性lay-filter过滤器');
         }
 
         objTab.titleBox = $container.children('ul.layui-tab-title');

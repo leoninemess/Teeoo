@@ -62,6 +62,7 @@ Route::group(['prefix' => 'Admin', 'namespace' => 'Admin'], function () {
 Route::group(["namespace" => "Admin", "prefix" => "Admin", "middleware" => "usercheck"], function () {
     //首页
     Route::get("/", "AdminController@index");
+    Route::get("baic", "AdminController@baic");
     //分类
     Route::group(["prefix" => "metas"], function () {
         //分类列表页
@@ -110,13 +111,7 @@ Route::group(["namespace" => "Admin", "prefix" => "Admin", "middleware" => "user
     //设置
     Route::group(["prefix" => "Setup"], function () {
         //基本设置
-        Route::group(['prefix' => 'Basicsetup'], function () {
-
-        });
-        //评论设置
-        Route::group(['prefix'=>'Reviewsettings'],function (){
-
-        });
-        //
+        Route::get('Basicsetup', 'SetupController@Basicsetup');
+        Route::post('Basicsetup_update', 'SetupController@Basicsetup_update');
     });
 });

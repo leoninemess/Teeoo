@@ -1,13 +1,12 @@
 @extends("layouts.app")
 
 @section("css")
-    <link rel="stylesheet" type="text/css" href="/admin/css/main.css?v2.0.1-simple" media="all">
+    <link rel="stylesheet" href="/admin/css/black/jqadmin.css">
     <link rel="stylesheet" href="/editor/css/editormd.min.css"/>
-
+    <link rel="stylesheet" type="text/css" href="/admin/css/main.css?v2.0.1-simple" media="all">
     {{--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300">--}}
     {{--<link rel="stylesheet" href="https://cdn.rawgit.com/yahoo/pure-release/v0.6.0/pure-min.css">--}}
     <link rel="stylesheet" href="/admin/css/jquery.tag-editor.css">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_579919_o0mndrxy4tmlsor.css"/>
 @endsection
 @section('content')
     <div class="layui-fluid larry-wrapper">

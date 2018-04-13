@@ -51,6 +51,6 @@ class LoginController extends Controller
     public function logout()
     {
         \Auth::logout();
-        $this->index();
+        return $this->index();
     }
 }
