@@ -45,9 +45,11 @@ class Comment extends Model
     use SoftDeletes;
     protected $table = 'comments';
     protected $guarded = [];
+
     //comment-content:Many-One
     public function comment_content()
     {
-        return $this->belongsTo(Content::class,'content_id','id');
+        return $this->belongsTo(Content::class, 'content_id', 'id');
     }
+
 }

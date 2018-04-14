@@ -10,6 +10,7 @@
         "ezyang/htmlpurifier": "^4.10",
         "facuz/laravel-themes": "^3.1",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.3",
         "jiaxincui/closure-table": "^2.1",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",

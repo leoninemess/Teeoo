@@ -80,6 +80,22 @@ Route::group(["namespace" => "Admin", "prefix" => "Admin", "middleware" => "user
         Route::get("delete/{id}", "MetasController@delete");
 
     });
+    //标签
+    Route::group(["prefix" => "tags"],function (){
+        //标签首页
+        Route::get("/","TagsController@index");
+        //添加标签
+        Route::post("store","TagsController@store");
+        //修改标签
+        Route::get("show/{id}","TagsController@show");
+        Route::post("edit","TagsController@edit");
+        //软删除标签
+        Route::get("destroy/{id}","TagsController@destroy");
+        //恢复删除标签
+        Route::get("restore/{id}","TagsController@restore");
+        //彻底删除标签
+        Route::get("delete/{id}","TagsController@delete");
+    });
     //主题
     Route::group(["prefix" => "themes"], function () {
         //主题首页
@@ -94,6 +110,15 @@ Route::group(["namespace" => "Admin", "prefix" => "Admin", "middleware" => "user
         //添加文章
         Route::get("add", "ContentController@add");
         Route::post("create", "ContentController@create");
+        //修改文章
+        Route::get("edit/{id}","ContentController@edit");
+        Route::post("edit/{id}","ContentController@edit");
+        //软删除文章
+        Route::get("destroy/{id}","ContentController@destroy");
+        //恢复软删除文章
+        Route::get("restore/{id}", "ContentController@restore");
+        //彻底删除文章
+        Route::get("delete/{id}", "ContentController@delete");
     });
     //评论
     Route::group(["prefix" => "comment"], function () {
@@ -114,4 +139,9 @@ Route::group(["namespace" => "Admin", "prefix" => "Admin", "middleware" => "user
         Route::get('Basicsetup', 'SetupController@Basicsetup');
         Route::post('Basicsetup_update', 'SetupController@Basicsetup_update');
     });
+});
+
+Route::get('/em',function (){
+    $user=\App\User::find(1);
+   return new \App\Mail\email($user);
 });

@@ -38,7 +38,8 @@ function set_Env(array $data)
     return \File::put($envPath, $content);
 }
 
-function string_remove_xss($html) {
+function string_remove_xss($html)
+{
     preg_match_all("/\<([^\<]+)\>/is", $html, $ms);
     $searchs[] = '<';
     $replaces[] = '&lt;';
@@ -48,21 +49,21 @@ function string_remove_xss($html) {
         $allowtags = 'img|a|font|div|table|tbody|caption|tr|td|th|br|p|b|strong|i|u|em|span|ol|ul|li|blockquote';
         $ms[1] = array_unique($ms[1]);
         foreach ($ms[1] as $value) {
-            $searchs[] = "&lt;".$value."&gt;";
+            $searchs[] = "&lt;" . $value . "&gt;";
 
             $value = str_replace('&amp;', '_uch_tmp_str_', $value);
             $value = string_htmlspecialchars($value);
             $value = str_replace('_uch_tmp_str_', '&amp;', $value);
             $value = str_replace(array('\\', '/*'), array('.', '/.'), $value);
-            $skipkeys = array('onabort','onactivate','onafterprint','onafterupdate','onbeforeactivate','onbeforecopy','onbeforecut','onbeforedeactivate',
-                'onbeforeeditfocus','onbeforepaste','onbeforeprint','onbeforeunload','onbeforeupdate','onblur','onbounce','oncellchange','onchange',
-                'onclick','oncontextmenu','oncontrolselect','oncopy','oncut','ondataavailable','ondatasetchanged','ondatasetcomplete','ondblclick',
-                'ondeactivate','ondrag','ondragend','ondragenter','ondragleave','ondragover','ondragstart','ondrop','onerror','onerrorupdate',
-                'onfilterchange','onfinish','onfocus','onfocusin','onfocusout','onhelp','onkeydown','onkeypress','onkeyup','onlayoutcomplete',
-                'onload','onlosecapture','onmousedown','onmouseenter','onmouseleave','onmousemove','onmouseout','onmouseover','onmouseup','onmousewheel',
-                'onmove','onmoveend','onmovestart','onpaste','onpropertychange','onreadystatechange','onreset','onresize','onresizeend','onresizestart',
-                'onrowenter','onrowexit','onrowsdelete','onrowsinserted','onscroll','onselect','onselectionchange','onselectstart','onstart','onstop',
-                'onsubmit','onunload','javascript','script','eval','behaviour','expression','style','class');
+            $skipkeys = array('onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 'onbeforecut', 'onbeforedeactivate',
+                'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange',
+                'onclick', 'oncontextmenu', 'oncontrolselect', 'oncopy', 'oncut', 'ondataavailable', 'ondatasetchanged', 'ondatasetcomplete', 'ondblclick',
+                'ondeactivate', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onerror', 'onerrorupdate',
+                'onfilterchange', 'onfinish', 'onfocus', 'onfocusin', 'onfocusout', 'onhelp', 'onkeydown', 'onkeypress', 'onkeyup', 'onlayoutcomplete',
+                'onload', 'onlosecapture', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel',
+                'onmove', 'onmoveend', 'onmovestart', 'onpaste', 'onpropertychange', 'onreadystatechange', 'onreset', 'onresize', 'onresizeend', 'onresizestart',
+                'onrowenter', 'onrowexit', 'onrowsdelete', 'onrowsinserted', 'onscroll', 'onselect', 'onselectionchange', 'onselectstart', 'onstart', 'onstop',
+                'onsubmit', 'onunload', 'javascript', 'script', 'eval', 'behaviour', 'expression', 'style', 'class');
             $skipstr = implode('|', $skipkeys);
             $value = preg_replace(array("/($skipstr)/i"), '.', $value);
             if (!preg_match("/^[\/|\s]?($allowtags)(\s+|$)/is", $value)) {
@@ -75,7 +76,8 @@ function string_remove_xss($html) {
     return $html;
 }
 
-function string_htmlspecialchars($string, $flags = null) {
+function string_htmlspecialchars($string, $flags = null)
+{
     if (is_array($string)) {
         foreach ($string as $key => $val) {
             $string[$key] = string_htmlspecialchars($val, $flags);
@@ -119,14 +121,11 @@ function getSystemInfo()
     $systemInfo['zendversion'] = zend_version();
 
     // GD相关
-    if (function_exists('gd_info'))
-    {
+    if (function_exists('gd_info')) {
         $gdInfo = gd_info();
         $systemInfo['gdsupport'] = true;
         $systemInfo['gdversion'] = $gdInfo['GD Version'];
-    }
-    else
-    {
+    } else {
         $systemInfo['gdsupport'] = false;
         $systemInfo['gdversion'] = '';
     }
@@ -146,6 +145,22 @@ function getSystemInfo()
     $systemInfo['memorylimit'] = get_cfg_var("memory_limit") ? get_cfg_var("memory_limit") : '-';
 
     return $systemInfo;
+}
+
+function send_em($da,$us)
+{
+    \Mail::send('send_em',
+        [
+            'title'=>$da->comment_content->title,
+            'author' => $da->username,
+            'mail' => $da->email,
+            'time' => $da->created_at,
+            'link' => "/archives/{$da->comment_content->sulg}.html#comments-{$da->id}/",
+            'content' => $da->content
+        ], function ($m) use ($da, $us) {
+            $m->to($us->email, $us->name)->subject("[{$da->comment_content->title}]一文有新的评论了！");
+        });
+
 }
 
 
