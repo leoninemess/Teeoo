@@ -120,7 +120,6 @@ return [
     */
 
     'providers' => [
-
         Facuz\Theme\ThemeServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
         Mpociot\LaravelTestFactoryHelper\TestFactoryHelperServiceProvider::class,

@@ -30,8 +30,11 @@ Route::group(['middleware' => 'web', 'namespace' => 'Home'], function () {
     Route::get("/", "IndexController@index");
     //文章详情页
     Route::get("archives/{slug}.html", "IndexController@archives");
+    Route::get("archives",function (){
+        return view("errors.404");
+    });
     //限制每个ip每分钟只能评论三次
-    Route::post("comment/{post_id}", "IndexController@comment_create")->middleware(['middleware' => 'throttle:50,1']);
+    Route::post("comment/{post_id}", "IndexController@comment_create")->middleware(['middleware' => 'throttle:3,1']);
     //清除当前用户的session
     Route::get("logout/{id}", "IndexController@logout");
     //分类下的文章

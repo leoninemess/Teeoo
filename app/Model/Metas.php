@@ -2,7 +2,6 @@
 
 namespace App\Model;
 
-use Cocur\Slugify\SlugifyInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Jiaxincui\ClosureTable\Traits\ClosureTable;

@@ -16,7 +16,7 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('content_id')->unsigned()->comment('外键');
-            $table->integer('parent_id')->nullable()->comment('父评论id');
+            $table->integer('parent')->nullable()->comment('父评论id');
             $table->integer('is_blog')->default(0)->comment('是否是博主回复：0不是,1是');
 //            $table->string('parent_name')->comment('父评论标题');
             $table->string('username')->comment('评论者用户名');

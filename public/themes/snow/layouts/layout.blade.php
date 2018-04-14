@@ -13,17 +13,17 @@
 
 </head>
 
-    <body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-loaded ">
-        @partial('header')
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-loaded ">
+@partial('header')
 
-        <main id="pjax">
-            @content()
-        </main>
+<main id="pjax">
+    @content()
+</main>
 
-        @partial('footer')
+@partial('footer')
 
-        @scripts()
-    </body>
+@scripts()
+</body>
 <script>
     var $$ = mdui.JQ;
 
@@ -61,6 +61,13 @@
                 $('.tabCard').eq(nowCard).css({
                     display: 'block'
                 })
+            });
+            $(".add_c").click(function () {
+                $(".h" + $(this).attr("uid")).toggle(function () {
+                    $(".h" + $(this).attr("uid")).show();
+                }, function () {
+                    $(".h" + $(this).attr("uid")).hide();
+                });
             });
         });
 

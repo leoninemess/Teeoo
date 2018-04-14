@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Jiaxincui\ClosureTable\Traits\ClosureTable;
 
 /**
  * App\Model\Comment
@@ -43,7 +44,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Comment extends Model
 {
     use SoftDeletes;
+    use ClosureTable;
     protected $table = 'comments';
+    protected $closureTable = 'comments_closure';
+    protected $parentColumn = 'parent';
     protected $guarded = [];
 
     //comment-content:Many-One

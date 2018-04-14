@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Mail\email;
 use App\Model\Comment;
 use App\Model\Content;
 use App\User;
@@ -29,14 +28,18 @@ class IndexController extends Controller
             ->with('metas')
             ->with('tags')
             ->with('user')
-            ->with('comments')
+//            ->with('comments')
             ->first();
-        return \Theme::view("archives", compact('content'));
+        $commentss=Comment::where("content_id","=",$content->id)->get()->toTree();
+//        dump($commentss);
+        return \Theme::view("archives", compact('content','commentss'));
     }
 
     public function comment_create(Request $request, $post_id)
     {
+        $parent = $request->post('parent') ??  0;
         $input = $request->except(['_token', 'content']);
+        $string = string_remove_xss($request->post('content')) == $request->post('content') ? $request->post('content') : string_remove_xss($request->post('content')) . '<img src="/themes/snow/assets/img/xss.jpg" alt="友情提示,这兄弟玩xss被我捉住了！！">';
         if (is_null(session('user_info'))) {
             $request->session()->put('user_info', [
                     'username' => $request->post('username'),
@@ -45,30 +48,58 @@ class IndexController extends Controller
                 ]
             );
         }
-        $string = string_remove_xss($request->post('content')) == $request->post('content') ? $request->post('content') : string_remove_xss($request->post('content')) . '<img src="/themes/snow/assets/img/xss.jpg" alt="友情提示,这兄弟玩xss被我捉住了！！">';
-        $collect = collect(
-            [session('user_info') ?? $input,
-                [
-                    'content_id' => $post_id,
-                    'parent_id' => 0,
-                    'parent_name' => '0',
-                    'content' => $string,
-                ]
-            ]);
-        $collapsed = $collect->collapse();
-        $comm = Comment::create($collapsed->toArray());
-        if ($comm) {
-            //更新评论条数
+        if ($parent != 0) {
+            $c = Comment::where("id", "=", $parent)->first();
+            $collect = collect(
+                [session('user_info') ?? $input,
+                    [
+                        'parent'=>$request->post('parent'),
+                        'content_id' => $post_id,
+                        'content' => $string,
+                        'is_blog' => 0
+                    ]
+                ]);
+            $collapsed = $collect->collapse();
+//            dump($collapsed->toArray());
+            $child = $c->createChild($collapsed->toArray());
+
             Content::where("id", "=", $post_id)->update(["commentsNum" => Comment::where("content_id", "=", $post_id)->count()]);
 
 
-            $da = Comment::where("id", "=", $comm->id)->with("comment_content")->first();
+            $da = Comment::where("id", "=", $child->id)->with("comment_content")->first();
 
             $us = User::find($da->comment_content->user_id);
 
             send_em($da, $us);
 
-            return redirect("archives/{$da->comment_content->slug}.html#comments-{$comm->id}");
+            return redirect("archives/{$da->comment_content->slug}.html#comments-{$child->id}");
+
+
+        } else {
+            $collect = collect(
+                [
+                    ["parent" =>$parent], session('user_info') ?? $input,
+                    [
+                        'content_id' => $post_id,
+                        'content' => $string,
+                        'is_blog' => 0
+                    ]
+                ]);
+            $collapsed = $collect->collapse();
+            $comm = Comment::create($collapsed->toArray());
+            if ($comm) {
+                //更新评论条数
+                Content::where("id", "=", $post_id)->update(["commentsNum" => Comment::where("content_id", "=", $post_id)->count()]);
+
+
+                $da = Comment::where("id", "=", $comm->id)->with("comment_content")->first();
+
+                $us = User::find($da->comment_content->user_id);
+
+                send_em($da, $us);
+
+                return redirect("archives/{$da->comment_content->slug}.html#comments-{$comm->id}");
+            }
         }
     }
 
