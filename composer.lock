@@ -4,8 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4905263032536a051642c358d6833fcb",
+    "content-hash": "93b76f57e8e3067501378c9db3f175b2",
     "packages": [
+        {
+            "name": "andreasindal/laravel-markdown",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andreasindal/laravel-markdown.git",
+                "reference": "899e124a4f3ac07c4e6445c87d8d34d1cbfe127f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/andreasindal/laravel-markdown/899e124a4f3ac07c4e6445c87d8d34d1cbfe127f.zip",
+                "reference": "899e124a4f3ac07c4e6445c87d8d34d1cbfe127f",
+                "shasum": ""
+            },
+            "require": {
+                "erusev/parsedown": "^1.6",
+                "illuminate/support": "5.6.*"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Indal\\Markdown\\MarkdownServiceProvider"
+                    ],
+                    "aliases": {
+                        "Markdown": "Indal\\Markdown\\Facade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Indal\\Markdown\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Indal",
+                    "email": "andreas@rocketship.se"
+                }
+            ],
+            "description": "Simple Blade directive for markdown parsing.",
+            "time": "2018-03-03T21:27:36+00:00"
+        },
         {
             "name": "barryvdh/laravel-ide-helper",
             "version": "v2.4.3",
@@ -3840,16 +3894,16 @@
         },
         {
             "name": "voku/anti-xss",
-            "version": "4.0.2",
+            "version": "4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/voku/anti-xss.git",
-                "reference": "bb14bce71cecf40188dac2bd9eb01ea506ee6b5f"
+                "reference": "422cbaf5e5343bb4b118d4911ee5a548ab82204c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/voku/anti-xss/bb14bce71cecf40188dac2bd9eb01ea506ee6b5f.zip",
-                "reference": "bb14bce71cecf40188dac2bd9eb01ea506ee6b5f",
+                "url": "https://files.phpcomposer.com/files/voku/anti-xss/422cbaf5e5343bb4b118d4911ee5a548ab82204c.zip",
+                "reference": "422cbaf5e5343bb4b118d4911ee5a548ab82204c",
                 "shasum": ""
             },
             "require": {
@@ -3893,7 +3947,7 @@
                 "security",
                 "xss"
             ],
-            "time": "2018-02-14T13:25:06+00:00"
+            "time": "2018-04-12T14:46:38+00:00"
         },
         {
             "name": "voku/portable-utf8",
@@ -4924,16 +4978,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.1.2",
+            "version": "7.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6a17c170fb92845896e1b3b00fcb462cd4b3c017"
+                "reference": "a7834993ddbf4b0ed2c3b2dc1f3b1d093ef910a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/sebastianbergmann/phpunit/6a17c170fb92845896e1b3b00fcb462cd4b3c017.zip",
-                "reference": "6a17c170fb92845896e1b3b00fcb462cd4b3c017",
+                "url": "https://files.phpcomposer.com/files/sebastianbergmann/phpunit/a7834993ddbf4b0ed2c3b2dc1f3b1d093ef910a9.zip",
+                "reference": "a7834993ddbf4b0ed2c3b2dc1f3b1d093ef910a9",
                 "shasum": ""
             },
             "require": {
@@ -4951,7 +5005,7 @@
                 "phpunit/php-file-iterator": "^1.4.3",
                 "phpunit/php-text-template": "^1.2.1",
                 "phpunit/php-timer": "^2.0",
-                "phpunit/phpunit-mock-objects": "^6.1",
+                "phpunit/phpunit-mock-objects": "^6.1.1",
                 "sebastian/comparator": "^2.1",
                 "sebastian/diff": "^3.0",
                 "sebastian/environment": "^3.1",
@@ -5000,7 +5054,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-04-10T11:40:22+00:00"
+            "time": "2018-04-13T02:28:50+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

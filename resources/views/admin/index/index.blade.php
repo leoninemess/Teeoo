@@ -113,7 +113,7 @@
                     <div class="sub-menu">
                         <ul class="layui-nav layui-nav-tree">
                             <li class="layui-nav-item">
-                                <a href="javascript:;" data-url="product.html" data-title="撰写文章"> <i class="iconfont icon-wenzhang-copy"></i>
+                                <a href="javascript:;" data-url="/Admin/content/add" data-title="撰写文章"> <i class="iconfont icon-wenzhang-copy"></i>
                                     <span>撰写文章</span> </a>
                             </li>
                             <li class="layui-nav-item">
@@ -134,7 +134,7 @@
                                         </a>
                                     </dd>
                                     <dd>
-                                        <a href="javascript:;" data-url="/admin/tag/index" data-title="标签管理">
+                                        <a href="javascript:;" data-url="/Admin/tags/" data-title="标签管理">
                                             <i class="iconfont icon-biaoqiantags3"></i><span>标签管理</span> </a>
                                     </dd>
                                     <dd>

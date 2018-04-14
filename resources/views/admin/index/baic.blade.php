@@ -6,57 +6,29 @@
 @section("content")
 <div class="layui-fluid larry-wrapper">
     <div class="layui-row layui-col-space30">
-        <div class="layui-col-xs6 layui-col-sm4 layui-col-md2">
-            <section class="panel">
-                <div class="symbol bgcolor-blue"> <i class="iconfont">&#xe672;</i>
-                </div>
-                <div class="value tab-menu">
-                    <a href="javascript:;"  data-parent="true" data-title="用户总量"><i class="iconfont " data-icon='&#xe672;'></i>
-                        <h1>10</h1>
-                    </a>
-
-                    <a href="javascript:;"  data-parent="true" data-title="用户总量"> <i class="iconfont " data-icon='&#xe672;'></i><span>用户总量</span></a>
-
-                </div>
-            </section>
-        </div>
-        <div class="layui-col-xs6 layui-col-sm4 layui-col-md2">
-            <section class="panel">
-                <div class="symbol bgcolor-commred"> <i class="iconfont">&#xe674;</i>
-                </div>
-                <div class="value tab-menu">
-                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="今日注册"> <i class="iconfont " data-icon='&#xe674;'></i>
-                        <h1>10</h1>
-                    </a>
-
-                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="今日注册"> <i class="iconfont " data-icon='&#xe674;'></i><span>今日注册</span></a>
-
-                </div>
-            </section>
-        </div>
 
         <div class="layui-col-xs6 layui-col-sm4 layui-col-md2">
             <section class="panel">
                 <div class="symbol bgcolor-dark-green"> <i class="iconfont">&#xe6bc;</i>
                 </div>
                 <div class="value tab-menu">
-                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="文章总数"> <i class="iconfont " data-icon='&#xe6bc;'></i>
-                        <h1>10</h1>
+                    <a href="javascript:;" data-url="#" data-parent="true" data-title="文章总数"> <i class="iconfont " data-icon='&#xe6bc;'></i>
+                        <h1>{{$content_count}}</h1>
                     </a>
-                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="文章总数"> <i class="iconfont " data-icon='&#xe6bc;'></i><span>文章总数</span></a>
+                    <a href="javascript:;" data-url="#" data-parent="true" data-title="文章总数"> <i class="iconfont " data-icon='&#xe6bc;'></i><span>文章总数</span></a>
                 </div>
             </section>
         </div>
 
         <div class="layui-col-xs6 layui-col-sm4 layui-col-md2">
             <section class="panel">
-                <div class="symbol bgcolor-yellow-green"> <i class="iconfont">&#xe649;</i>
+                <div class="symbol bgcolor-yellow-green"> <i class="iconfont icon-shengqian"></i>
                 </div>
                 <div class="value tab-menu">
-                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="今日新增"> <i class="iconfont " data-icon='&#xe649;'></i>
-                        <h1>10</h1>
+                    <a href="javascript:;" data-url="#" data-parent="true" data-title="Tag总数"> <i class="iconfont " data-icon='&#xe649;'></i>
+                        <h1>{{$tag_count}}</h1>
                     </a>
-                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="今日新增"> <i class="iconfont " data-icon='&#xe649;'></i><span>今日新增</span></a>
+                    <a href="javascript:;" data-url="#" data-parent="true" data-title="Tag总数"> <i class="iconfont " data-icon='&#xe649;'></i><span>Tag总数</span></a>
                 </div>
             </section>
         </div>
@@ -66,10 +38,10 @@
                 <div class="symbol bgcolor-orange"> <i class="iconfont">&#xe638;</i>
                 </div>
                 <div class="value tab-menu">
-                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="评论总数"> <i class="iconfont " data-icon='&#xe638;'></i>
-                        <h1>10</h1>
+                    <a href="javascript:;" data-url="#" data-parent="true" data-title="评论总数"> <i class="iconfont " data-icon='&#xe638;'></i>
+                        <h1>{{$comment_count}}</h1>
                     </a>
-                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="评论总数"> <i class="iconfont " data-icon='&#xe638;'></i><span>评论总数</span></a>
+                    <a href="javascript:;" data-url="#" data-parent="true" data-title="评论总数"> <i class="iconfont " data-icon='&#xe638;'></i><span>评论总数</span></a>
                 </div>
             </section>
         </div>
@@ -101,7 +73,15 @@
                     <ul>
                         <li>Teeoo v1.0 发布</li>
                     </ul>
-                    </div>
+                    <h2>Teeoo 2018-04-14</h2>
+                    <ul>
+                        <li>完成Tag,文章等等CURD</li>
+                        <li>完成评论邮件通知</li>
+                        <li>修改iconfont</li>
+                        <li>完成基本设置Mysql版本需要大于等于5.7</li>
+                        <li>修复若干BUG</li>
+                    </ul>
+                </div>
             </section>
         </div>
         <div class="layui-col-xs12 layui-col-sm12 layui-col-md6">

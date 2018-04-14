@@ -18,12 +18,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         \Carbon\Carbon::setLocale('zh');
-//        if(Schema::hasTable('metas')){
-//            $metas=Metas::all();
-//            if ($metas){
-//                view()->share('metas', $metas);
-//            }
-//        }
+        if(Schema::hasTable('metas')){
+            $metas=Metas::all();
+            if ($metas){
+                view()->share('metas', $metas);
+            }
+        }
     }
 
     /**

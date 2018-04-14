@@ -20,6 +20,7 @@ class CommentController extends Controller
     public function index()
     {
         $comment = Comment::withTrashed()->with('comment_content')->get();
+//        dump($comment);
         return view('admin.comment.index', compact('comment'));
     }
 

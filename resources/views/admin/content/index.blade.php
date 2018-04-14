@@ -63,6 +63,7 @@
                                     <th>分类</th>
                                     <th>发表时间</th>
                                     <th>最后更新时间</th>
+                                    <th>来点骚操作</th>
                                 </tr>
                                 </thead>
                                 @foreach($contents as $val)
@@ -72,8 +73,8 @@
                                                              class="layui-badge">{{$val->commentsNum}}</span></a>
                                         </td>
                                         <td>
-                                            <a href="/admin/content/edit/{{$val->id}}">{{$val->title}}</a>
-                                            <a href="/admin/content/edit/{{$val->id}}" title="编辑 {{$val->title}}"><i
+                                            <a href="/Admin/content/edit/{{$val->id}}">{{$val->title}}</a>
+                                            <a href="/Admin/content/edit/{{$val->id}}" title="编辑 {{$val->title}}"><i
                                                         class="icon-bianji-copy-copy iconfont"></i></a>
                                             <a href="" title="浏览 {{$val->title}}"><i
                                                         class="icon-liulan1 iconfont"></i></a>
@@ -93,6 +94,14 @@
                                         <td><a href="">{{$val->metas->types}}</a></td>
                                         <td>{{$val->created_at}}</td>
                                         <td>{{$val->updated_at->diffForHumans()}}</td>
+                                        <td>
+                                            @if(is_null($val->deleted_at))
+                                                <a href="/Admin/content/destroy/{{$val->id}}" class="layui-badge">删除</a>
+                                            @else
+                                                <a href="/Admin/content/restore/{{$val->id}}" class="layui-btn-sm layui-bg-blue">恢复</a>
+                                                <a href="/Admin/content/delete/{{$val->id}}" class="layui-btn-sm  layui-badge">彻底删除</a>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </table>

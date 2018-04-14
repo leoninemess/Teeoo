@@ -24,8 +24,13 @@
         </div>
     </div>
     <div class="mdui-divider" style="margin: 10px 0"></div>
-    <div class="mdui-typo">
-        {!! $content->html !!}
+    <div class="mdui-typo pageContent">
+        {{--{!!  $content->html !!}--}}
+        <div id="test-editormd-view2">
+                <textarea id="append-test" style="display:none;">
+                    {{$content->html}}
+                </textarea>
+        </div>
     </div>
 </div>
 @if($content->criticism=="2")

@@ -43,6 +43,6 @@ class AdminController extends Controller
             '用户的IP地址'=>$_SERVER['REMOTE_ADDR'],
             '剩余空间'=>round((disk_free_space(".")/(1024*1024)),2).'M',
         );
-        return view("admin.index.baic",compact('info'));
+        return view("admin.index.baic",compact('info','comment_count','content_count','tag_count'));
     }
 }
