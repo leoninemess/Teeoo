@@ -27,9 +27,7 @@
     <div class="mdui-typo pageContent">
         {{--{!!  $content->html !!}--}}
         <div id="test-editormd-view2">
-                <textarea id="append-test" style="display:none;">
-                    {{$content->html}}
-                </textarea>
+            {!! $content->html!!}
         </div>
     </div>
 </div>
