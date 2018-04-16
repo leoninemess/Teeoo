@@ -30,14 +30,14 @@ class IndexController extends Controller
             ->with('user')
 //            ->with('comments')
             ->first();
-        $commentss=Comment::where("content_id","=",$content->id)->get()->toTree();
+        $commentss = Comment::where("content_id", "=", $content->id)->get()->toTree();
 //        dump($commentss);
-        return \Theme::view("archives", compact('content','commentss'));
+        return \Theme::view("archives", compact('content', 'commentss'));
     }
 
     public function comment_create(Request $request, $post_id)
     {
-        $parent = $request->post('parent') ??  0;
+        $parent = $request->post('parent') ?? 0;
         $input = $request->except(['_token', 'content']);
         $string = string_remove_xss($request->post('content')) == $request->post('content') ? $request->post('content') : string_remove_xss($request->post('content')) . '<img src="/themes/snow/assets/img/xss.jpg" alt="友情提示,这兄弟玩xss被我捉住了！！">';
         if (is_null(session('user_info'))) {
@@ -53,7 +53,7 @@ class IndexController extends Controller
             $collect = collect(
                 [session('user_info') ?? $input,
                     [
-                        'parent'=>$request->post('parent'),
+                        'parent' => $request->post('parent'),
                         'content_id' => $post_id,
                         'content' => $string,
                         'is_blog' => 0
@@ -78,7 +78,7 @@ class IndexController extends Controller
         } else {
             $collect = collect(
                 [
-                    ["parent" =>$parent], session('user_info') ?? $input,
+                    ["parent" => $parent], session('user_info') ?? $input,
                     [
                         'content_id' => $post_id,
                         'content' => $string,
@@ -106,6 +106,6 @@ class IndexController extends Controller
     public function logout(Request $request, $id)
     {
         $request->session()->flush();
-        return redirect("archives/{$id}.html#respond-post-1");
+        return redirect("archives/{$id}.html#comments-1");
     }
 }
