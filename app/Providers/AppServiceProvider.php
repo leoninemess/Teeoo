@@ -17,10 +17,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $site = json_decode(file_get_contents(storage_path('site.json')), true);
         \Carbon\Carbon::setLocale('zh');
-        if(Schema::hasTable('metas')){
-            $metas=Metas::all();
-            if ($metas){
+        if (Schema::hasTable('metas')) {
+            $metas = Metas::all();
+            if ($metas) {
                 view()->share('metas', $metas);
             }
         }

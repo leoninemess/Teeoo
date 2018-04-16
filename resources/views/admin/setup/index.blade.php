@@ -8,7 +8,7 @@
     <div class="layui-row layui-col-space30">
         <div class="layui-col-xs24">
             <section class="panel panel-padding">
-                <form class="layui-form" method="post" action="/Admin/Setup/Basicsetup_update/">
+                <form class="layui-form" method="post" action="/Admin/Setup/Basicsetup/">
                     {!! csrf_field() !!}
                     <div class="layui-tab" lay-filter="check">
                         <ul class="layui-tab-title">
@@ -21,31 +21,31 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">网站名称</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="name" value="{{$set["name"]}}" placeholder="请输入网站名称" autocomplete="off" class="layui-input ">
+                                        <input type="text" name="SITE_NAME" value="{{env('SITE_NAME')}}" placeholder="请输入网站名称" autocomplete="off" class="layui-input ">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">网站地址</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="address" value="{{$set["address"]}}" placeholder="请输入网站地址" autocomplete="off" class="layui-input ">
+                                        <input type="text" name="SITE_address" value="{{env('SITE_address')}}" placeholder="请输入网站地址" autocomplete="off" class="layui-input ">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">关键字</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="key" value="{{$set["key"]}}" placeholder="请以半角逗号 , 分割多个关键字" autocomplete="off" class="layui-input ">
+                                        <input type="text" name="SITE_KEY" value="{{env('SITE_KEY')}}" placeholder="请以半角逗号 , 分割多个关键字" autocomplete="off" class="layui-input ">
                                     </div>
                                 </div>
                                 <div class="layui-form-item ">
                                     <label class="layui-form-label">站点描述</label>
                                     <div class="layui-input-block">
-                                        <textarea name="describe" placeholder="请输入描述" class="layui-textarea">{{$set["describe"]}}</textarea>
+                                        <textarea name="SITE_describe" placeholder="请输入描述" class="layui-textarea">{{env('SITE_describe')}}</textarea>
                                     </div>
                                 </div>
                                 <div class="layui-form-item layui-form-text">
                                     <label class="layui-form-label">底部代码</label>
                                     <div class="layui-input-block">
-                                        <textarea name="Bottomcode"  placeholder="底部代码" class="layui-textarea">{{$set["Bottomcode"]}}</textarea>
+                                        <textarea name="SITE_Bottomcode"  placeholder="底部代码" class="layui-textarea">{{env('SITE_Bottomcode')}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -53,57 +53,89 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">允许上传文件类型</label>
                                     <div class="layui-input-block">
-                                        <input type="checkbox" checked="checked" name="picture" value="gif,jpg,jpeg,png,tiff,bmp" title="是">图片文件 (gif jpg jpeg png tiff bmp)
+                                        <input type="checkbox" checked="checked" name="picture" value="{{env('SITE_picture')}}" title="是">图片文件 (gif jpg jpeg png tiff bmp)
                                     </div>
                                     <div class="layui-input-block">
-                                        <input type="checkbox" checked="checked" name="Multi-Media" value="mp3,wmv,wma,rmvb,rm,avi,flv" title="是">多媒体文件 (mp3 wmv wma rmvb rm avi flv)
+                                        <input type="checkbox" checked="checked" name="SITE_Multi-Media" value="{{env('SITE_Multi-Media')}}" title="是">多媒体文件 (mp3 wmv wma rmvb rm avi flv)
                                     </div>
                                     <div class="layui-input-block">
-                                        <input type="checkbox" checked="checked" name="archives" value="txt,doc,docx,xls,xlsx,ppt,pptx,zip,rar,pdf" title="是">常用档案文件 (txt doc docx xls xlsx ppt pptx zip rar pdf)
+                                        <input type="checkbox" checked="checked" name="SITE_archives" value="{{env('SITE_archives')}}" title="是">常用档案文件 (txt doc docx xls xlsx ppt pptx zip rar pdf)
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">自定义上传格式</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="custom" value="{{$set["custom"]}}" placeholder="请输入自定义的格式" autocomplete="off" class="layui-input ">
+                                        <input type="text" name="SITE_custom" value="{{env('SITE_custom')}}" placeholder="请输入自定义的格式" autocomplete="off" class="layui-input ">
                                     </div>
                                 </div>
                                 <div class="layui-form-item ">
                                     <label class="layui-form-label">受限IP列表</label>
                                     <div class="layui-input-block">
-                                        <textarea name="Be_limited_to_ip" placeholder="统计代码" class="layui-textarea">{{$set["Be_limited_to_ip"]}}</textarea>
+                                        <textarea name="Be_limited_to_ip" placeholder="统计代码" class="layui-textarea">{{env('SITE_Be_limited_to_ip')}}</textarea>
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">登录次数</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="Number_of_logins" value="{{$set["Number_of_logins"]}}"  placeholder="最大登录失败次数" autocomplete="off" class="layui-input ">
+                                        <input type="text" name="Number_of_logins" value="{{env('SITE_Number_of_logins')}}"  placeholder="最大登录失败次数" autocomplete="off" class="layui-input ">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">网站关闭</label>
                                     <div class="layui-input-block">
-                                        <input type="checkbox" name="checkbox" value="1" title="是">
+                                        <input type="checkbox" name="checkbox" value="{{env('SITE_checkbox')}}" title="是">
                                     </div>
                                 </div>
                             </div>
                             <div class="layui-tab-item">
                                 <div class="layui-form-item">
-                                    <label class="layui-form-label">driver</label>
+                                    <label class="layui-form-label">驱动</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="driver" value="{{$set["driver"]}}"  placeholder="driver" autocomplete="off" class="layui-input ">
+                                        <input type="text" name="MAIL_DRIVER" value="{{env('MAIL_DRIVER')}}" autocomplete="off" class="layui-input ">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
-                                    <label class="layui-form-label">host</label>
+                                    <label class="layui-form-label">主机</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="host" value="{{$set["host"]}}"  placeholder="host" autocomplete="off" class="layui-input ">
+                                        <input type="text" name="MAIL_HOST" value="{{env('MAIL_HOST')}}"  autocomplete="off" class="layui-input ">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
-                                    <label class="layui-form-label">port</label>
+                                    <label class="layui-form-label">端口</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="port" value="{{$set["port"]}}" placeholder="port" autocomplete="off" class="layui-input ">
+                                        <input type="text" name="MAIL_PORT" value="{{env('MAIL_PORT')}}" placeholder="port" autocomplete="off" class="layui-input ">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">邮箱账号</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="MAIL_USERNAME" value="{{env('MAIL_USERNAME')}}" placeholder="port" autocomplete="off" class="layui-input ">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">邮箱密码</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="MAIL_PASSWORD" value="{{env('MAIL_PASSWORD')}}" placeholder="port" autocomplete="off" class="layui-input ">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">加密类型</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="MAIL_ENCRYPTION" value="{{env('MAIL_ENCRYPTION')}}" placeholder="port" autocomplete="off" class="layui-input ">
+                                    </div>
+                                </div>
+
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">全局发送者邮箱</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="MAIL_FROM_ADDRESS" value="{{env('MAIL_FROM_ADDRESS')}}" placeholder="port" autocomplete="off" class="layui-input ">
+                                    </div>
+                                </div>
+
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">全局发送者用户名</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="MAIL_FROM_NAME" value="{{env('MAIL_FROM_NAME')}}" placeholder="port" autocomplete="off" class="layui-input ">
                                     </div>
                                 </div>
                             </div>

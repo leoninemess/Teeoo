@@ -113,6 +113,8 @@ Route::group(["namespace" => "Admin", "prefix" => "Admin", "middleware" => "user
         //添加文章
         Route::get("add", "ContentController@add");
         Route::post("create", "ContentController@create");
+        //上传图片
+        Route::post("uploadimage", "ContentController@uploadimage");
         //修改文章
         Route::get("edit/{id}","ContentController@edit");
         Route::post("edit/{id}","ContentController@edit");
@@ -139,12 +141,12 @@ Route::group(["namespace" => "Admin", "prefix" => "Admin", "middleware" => "user
     //设置
     Route::group(["prefix" => "Setup"], function () {
         //基本设置
-        Route::get('Basicsetup', 'SetupController@Basicsetup');
-        Route::post('Basicsetup_update', 'SetupController@Basicsetup_update');
+        Route::any('Basicsetup', 'SetupController@Basicsetup');
+        //个人设置
+        Route::any('user', 'SetupController@user');
     });
 });
 
-Route::get('/em',function (){
-    $user=\App\User::find(1);
-   return new \App\Mail\email($user);
+Route::get('/site',function (){
+    dump(env('SITE_picture'));
 });

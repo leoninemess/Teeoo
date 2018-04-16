@@ -19,7 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('Headportrait')->nullable()->comment('头像');;
             $table->string('email')->unique();
             $table->string('password');
-            $table->json('Setup')->nullable()->comment('设置');
+            //需要mysql版本>=5.7
+//            $table->json('Setup')->nullable()->comment('设置');
             $table->rememberToken();
             $table->timestamps();
         });

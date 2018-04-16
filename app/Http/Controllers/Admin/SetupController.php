@@ -11,19 +11,50 @@ class SetupController extends Controller
 {
     public function Basicsetup(Request $request)
     {
+        if ($request->isMethod('post')) {
+            $input = $request->except(['_token']);
 
-        $set = User::find(\Auth::id());
-        $set=json_decode($set->Setup, true);
-        return view('admin.setup.index', compact('set'));
+            set_Env($input);
 
+            return redirect("/Admin/Setup/Basicsetup")->with([
+                    'message' => "数据修改成功！！",
+                    'icon' => '6'
+                ]
+            );
+        } else {
+            return view('admin.setup.index');
+        }
     }
 
-    public function Basicsetup_update(Request $request)
+    public function user(Request $request)
     {
-        $input = $request->except(['_token']);
+        if ($request->isMethod('post')) {
+            $input = $request->except(['_token','password']);
+//            $user=User::where("id",\Auth::id())->update($request->post());
+            $request->user()->fill([
+                'password' => \Hash::make($request->password)
+            ])->save();
 
-        $user = User::where("id", "=", \Auth::id())->update(['Setup' => json_encode($input)]);
+            $user=User::where("id",\Auth::id())->update($input);
 
-        Prompt($user, "数据修改", 'Admin/Setup/Basicsetup');
+            if ($user){
+                return redirect("/Admin/Setup/user")->with([
+                        'message' => "数据修改成功！！",
+                        'icon' => '6'
+                    ]
+                );
+            }else{
+                return redirect("/Admin/Setup/user")->with([
+                        'message' => "数据修改失败！！",
+                        'icon' => '5'
+                    ]
+                );
+            }
+
+
+        } else {
+            $user=User::find(\Auth::id());
+            return view('admin.setup.user',compact('user'));
+        }
     }
 }

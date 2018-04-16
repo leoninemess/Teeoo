@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.16 on 2018-04-13 01:14:27.
+ * Generated for Laravel 5.6.16 on 2018-04-16 06:46:45.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -13330,6 +13330,139 @@ namespace Thomaswelton\LaravelGravatar\Facades {
  
 }
 
+namespace JildertMiedema\LaravelPlupload\Facades { 
+
+    class Plupload {
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function make($settings = null)
+        {
+            return \JildertMiedema\LaravelPlupload\Manager::make($settings);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function init($settings = null)
+        {
+            return \JildertMiedema\LaravelPlupload\Manager::init($settings);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function receive($name, $handler)
+        {
+            return \JildertMiedema\LaravelPlupload\Manager::receive($name, $handler);
+        }
+         
+    }
+ 
+}
+
+namespace Indal\Markdown { 
+
+    class Facade {
+        
+        /**
+         * Parses a markdown string to HTML.
+         *
+         * @param string $text
+         * @return string 
+         * @static 
+         */ 
+        public static function parse($text)
+        {
+            return \Indal\Markdown\Parser::parse($text);
+        }
+        
+        /**
+         * Parses a single line of markdown to HTML.
+         *
+         * @param string $text
+         * @return string 
+         * @static 
+         */ 
+        public static function line($text)
+        {
+            return \Indal\Markdown\Parser::line($text);
+        }
+        
+        /**
+         * Escape any XSS attempts related to injecting JavaScript in anchor tags.
+         * 
+         * Will only escape the string if the escape option is set to true in the
+         * config.
+         *
+         * @param string $text
+         * @return string 
+         * @static 
+         */ 
+        public static function escape($text)
+        {
+            return \Indal\Markdown\Parser::escape($text);
+        }
+        
+        /**
+         * Start capturing output to be parsed.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function begin()
+        {
+            \Indal\Markdown\Parser::begin();
+        }
+        
+        /**
+         * Stop capturing output, parse the string from markdown to HTML and return
+         * it. Throws an exception if outpout capturing hasn't been started yet.
+         *
+         * @throws \Indal\Markdown\Exceptions\InvalidTagException
+         * @return string 
+         * @static 
+         */ 
+        public static function end()
+        {
+            return \Indal\Markdown\Parser::end();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setDriver($driver)
+        {
+            return \Indal\Markdown\Parser::setDriver($driver);
+        }
+        
+        /**
+         * Removes indentation according to the indentation of the first line, of
+         * the given markdown text. This prevents markdown from being rendered
+         * as code in unwanted places.
+         *
+         * @param string $text
+         * @return string 
+         * @static 
+         */ 
+        public static function removeLeadingWhitespace($text)
+        {
+            return \Indal\Markdown\Parser::removeLeadingWhitespace($text);
+        }
+         
+    }
+ 
+}
+
 namespace Mews\Purifier\Facades { 
 
     class Purifier {
@@ -15603,6 +15736,10 @@ namespace  {
     class Theme extends \Facuz\Theme\Facades\Theme {}
 
     class Gravatar extends \Thomaswelton\LaravelGravatar\Facades\Gravatar {}
+
+    class Plupload extends \JildertMiedema\LaravelPlupload\Facades\Plupload {}
+
+    class Markdown extends \Indal\Markdown\Facade {}
 
     class Purifier extends \Mews\Purifier\Facades\Purifier {}
  

@@ -3,8 +3,8 @@
     <div class="left-page-list mdui-col-md-8">
         <div class="nice">
             <div class="mdui-typo">
-                <h4>Hello Word</h4>
-                <p>Just So So ...</p>
+                <h4>{!! env('SITE_NAME') !!}}</h4>
+                <p>{!! env('SITE_describe') !!}</p>
             </div>
         </div>
         @foreach($content as $con)
@@ -85,7 +85,8 @@
                                     @foreach($comments_desc as $comments_descc)
                                         <li>
                                             {{$comments_descc->username}}:
-                                            <a href="/archives/{{$comments_descc->content_id}}.html#comments-{{$comments_descc->id}}">{{str_limit($comments_descc->content,10,"... ...")}}</a></li>
+                                            <a href="/archives/{{$comments_descc->content_id}}.html#comments-{{$comments_descc->id}}">{{str_limit($comments_descc->content,10,"... ...")}}</a>
+                                        </li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -109,7 +110,9 @@
                             <ul>
                                 @if(isset($metas))
                                     @foreach($metas as $me)
-                                        <li><a href="http://iatw.cc/index.php/category/default/">{{$me->types}}</a> ({{$me->content_count}})</li>
+                                        <li><a href="http://iatw.cc/index.php/category/default/">{{$me->types}}</a>
+                                            ({{$me->content_count}})
+                                        </li>
                                     @endforeach
                                 @else
                                 @endif

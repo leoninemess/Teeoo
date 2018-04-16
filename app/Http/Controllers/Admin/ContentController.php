@@ -8,6 +8,7 @@ use App\Model\Metas;
 use App\Model\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class ContentController extends Controller
 {
@@ -195,6 +196,37 @@ class ContentController extends Controller
         //同时把该文章的评论数据一起删除
         Comment::where("content_id", "=", $id)->forceDelete();
         return Prompt($content, "文章已彻底删除", "Admin/content");
+    }
+
+    public function uploadimage(Request $request)
+    {
+        $message = "";
+        $file = $request->file('editormd-image-file');
+        if ($file->isValid()) {
+            $pathDir = date('Ymd');
+            if (!\Storage::disk('public')->exists('/article/' . $pathDir)) {
+                \Storage::disk('public')->makeDirectory('/article/' . $pathDir);
+            }
+            $originalName = $file->getClientOriginalName();
+            $ext = $file->getClientOriginalExtension();
+            $realPath = $file->getRealPath();
+            $type = $file->getClientMimeType();
+            $filename = date('Y-m-d-H-i-s') . '-' . uniqid() . '.' . $ext;
+//              $bool = \Storage::disk('public')->put($filename, file_get_contents($realPath));
+            $bool = $file->move("uploads/article/" . $pathDir, $filename);
+//            if ($file->move($file->move("uploads/article/" . $pathDir, $filename))) {
+//                $url = "/uploads/article/" . $pathDir . "/" . $filename;
+//            } else {
+//                $message = "1";
+//            }
+        }
+        $data = array(
+            'success' => 1,  //1：上传成功  0：上传失败
+            'message' => $message,
+            'url' => "/uploads/article/" . $pathDir . "/" . $filename
+        );
+        ob_end_flush();
+        return json_encode($data);
     }
 
 }

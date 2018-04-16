@@ -40,23 +40,23 @@
             <!-- 头部右侧导航 -->
             <div class="header-right">
                 <ul class="layui-nav jqadmin-header-item right-menu">
-                    <li class="layui-nav-item first">
-                        <a href="javascript:;">
-                            <cite> 主题 </cite>
-                            <span class="layui-nav-more"></span>
-                        </a>
-                        <dl class="layui-nav-child theme">
-                            <dd>
-                                <a href="javascript:;" data-href="/admin/css/blue/jqadmin.css">蓝色</a>
-                            </dd>
-                            <dd>
-                                <a href="javascript:;" data-href="/admin/css/black/jqadmin.css">黑色</a>
-                            </dd>
-                            <dd>
-                                <a href="javascript:;" data-href="/admin/css/gray/jqadmin.css">灰色</a>
-                            </dd>
-                        </dl>
-                    </li>
+                    {{--<li class="layui-nav-item first">--}}
+                        {{--<a href="javascript:;">--}}
+                            {{--<cite> 主题 </cite>--}}
+                            {{--<span class="layui-nav-more"></span>--}}
+                        {{--</a>--}}
+                        {{--<dl class="layui-nav-child theme">--}}
+                            {{--<dd>--}}
+                                {{--<a href="javascript:;" data-href="/admin/css/blue/jqadmin.css">蓝色</a>--}}
+                            {{--</dd>--}}
+                            {{--<dd>--}}
+                                {{--<a href="javascript:;" data-href="/admin/css/black/jqadmin.css">黑色</a>--}}
+                            {{--</dd>--}}
+                            {{--<dd>--}}
+                                {{--<a href="javascript:;" data-href="/admin/css/gray/jqadmin.css">灰色</a>--}}
+                            {{--</dd>--}}
+                        {{--</dl>--}}
+                    {{--</li>--}}
 
                     <li class="layui-nav-item first">
                         <a href="javascript:;">
@@ -65,7 +65,7 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd class="tab-menu">
-                                <a href="javascript:;" data-url="user-info.html" data-title="个人信息"> <i class="iconfont "
+                                <a href="javascript:;" data-url="/Admin/Setup/user" data-title="个人信息"> <i class="iconfont "
                                                                                                        data-icon='&#xe672;'>&#xe672; </i><span>个人信息</span></a>
                             </dd>
                             <dd>
@@ -94,7 +94,7 @@
                                         </a>
                                     </dd>
                                     <dd>
-                                        <a href="javascript:;" data-url="article-cat.html" data-title="个人设置"> <i
+                                        <a href="javascript:;" data-url="/Admin/Setup/user" data-title="个人设置"> <i
                                                     class="iconfont" data-icon="&#xe635;">&#xe635;</i> <span>个人设置</span>
                                         </a>
                                     </dd>

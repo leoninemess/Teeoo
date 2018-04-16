@@ -16,7 +16,9 @@ class IndexController extends Controller
             ->with('tags')
             ->with('user')
             ->get();
-
+        \Theme::setTitle(env('SITE_NAME'));
+        \Theme::setAuthor('Teeoo');
+        \Theme::setKeywords(env('SITE_KEY'));
         $comments_desc = Comment::orderBy('created_at', 'desc')->get();
         $content_desc = Content::orderBy('created_at', 'desc')->get();
         return \Theme::view('index', compact('content', 'comments_desc', 'content_desc'));
@@ -31,7 +33,12 @@ class IndexController extends Controller
 //            ->with('comments')
             ->first();
         $commentss = Comment::where("content_id", "=", $content->id)->get()->toTree();
-//        dump($commentss);
+        $key=collect( $content->tags )->map(function($order){
+            return $order['name'];
+        });
+        \Theme::setTitle($content->title);
+        \Theme::setAuthor('Teeoo');
+        \Theme::setKeywords(implode(",", $key->toArray()));
         return \Theme::view("archives", compact('content', 'commentss'));
     }
 

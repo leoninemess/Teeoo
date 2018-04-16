@@ -81,6 +81,12 @@
                         <li>完成基本设置Mysql版本需要大于等于5.7</li>
                         <li>修复若干BUG</li>
                     </ul>
+                    <h2>Teeoo 2018-04-16</h2>
+                    <ul>
+                        <li>更新个人设置</li>
+                        <li>修改文章修改BUG</li>
+                        <li>一些配置放入.env中</li>
+                    </ul>
                 </div>
             </section>
         </div>
