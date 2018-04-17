@@ -75,9 +75,9 @@ class IndexController extends Controller
 
             $da = Comment::where("id", "=", $child->id)->with("comment_content")->first();
 
-            $us = User::find($da->comment_content->user_id);
+            reply_em($da,$c);
 
-            send_em($da, $us);
+
 
             return redirect("archives/{$da->comment_content->slug}.html#comments-{$child->id}");
 

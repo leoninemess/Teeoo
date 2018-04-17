@@ -147,20 +147,39 @@ function getSystemInfo()
     return $systemInfo;
 }
 
-function send_em($da,$us)
+function send_em($da, $us)
 {
     \Mail::send('send_em',
         [
-            'title'=>$da->comment_content->title,
+            'title' => $da->comment_content->title,
             'author' => $da->username,
             'mail' => $da->email,
             'time' => $da->created_at,
-            'link' => "/archives/{$da->comment_content->sulg}.html#comments-{$da->id}/",
+            'link' => env("SITE_address") . "/archives/{$da->comment_content->slug}.html#comments-{$da->id}/",
             'content' => $da->content
         ], function ($m) use ($da, $us) {
             $m->to($us->email, $us->name)->subject("[{$da->comment_content->title}]一文有新的评论了！");
         });
 
 }
+
+
+function reply_em($da,$c)
+{
+    \Mail::send('reply_em',
+        [
+            'title' => $da->comment_content->title,
+            'author' => $da->username,
+            'mail' => $da->email,
+            'time' => $da->created_at,
+            'link' => env("SITE_address") . "/archives/{$da->comment_content->slug}.html#comments-{$da->id}/",
+            'content' => $da->content,
+            'y_text' => $c->content
+        ], function ($m) use ($da,$c) {
+            $m->to($c->email, $c->name)->subject("[{$da->comment_content->title}]一文有新的评论了！");
+        });
+
+}
+
 
 
