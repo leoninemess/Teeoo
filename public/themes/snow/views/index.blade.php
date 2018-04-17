@@ -85,7 +85,7 @@
                                     @foreach($comments_desc as $comments_descc)
                                         <li>
                                             {{$comments_descc->username}}:
-                                            <a href="/archives/{{$comments_descc->content_id}}.html#comments-{{$comments_descc->id}}">{{str_limit($comments_descc->content,10,"... ...")}}</a>
+                                            <a href="/archives/{{$comments_descc->comment_content->slug}}.html#comments-{{$comments_descc->id}}">{{str_limit($comments_descc->content,10,"... ...")}}</a>
                                         </li>
                                     @endforeach
                                 </ul>

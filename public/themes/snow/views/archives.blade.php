@@ -95,7 +95,7 @@
                     <div class="userData" id="comments-{{$comments["id"]}}">
                         {{--{{ Gravatar::src('thomaswelton@me.com') }}--}}
                         <div class="userIcon"
-                             style="width: 100px;height: 100px;border-radius: 50%;position: relative;background: url('{{ Gravatar::src('2365160465@qq.com') }}') no-repeat center / cover;">
+                             style="width: 100px;height: 100px;border-radius: 50%;position: relative;background: url('{{ Gravatar::src('$comments->email') }}') no-repeat center / cover;">
                             <div class="userName">
                                 <div class="name">
                                     <a href="#" rel="external nofollow">{{$comments["username"]}}</a><a class="add_c"

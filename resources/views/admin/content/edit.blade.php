@@ -25,7 +25,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">URL</label>
                                 <div class="layui-input-block" style="padding-top: 10px">
-                                <span style="padding-top: 5px">http://127.0.0.1:8000/
+                                <span style="padding-top: 5px">{{env('SITE_HOST')}}/
                                     <input style="width: 25px;border-left: 0px;border-top: 0px;border-right: 0px" type="text" name="slug" value="{{$contents->slug}}">/</span>
                                 </div>
                             </div>
@@ -150,7 +150,8 @@
     <script src="/editor/editormd.min.js"></script>
 
     {{--<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>--}}
-    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+    {{--<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>--}}
+    <script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.js"></script>
     <script src="/admin/js/jquery.caret.min.js"></script>
     <script src="/admin/js/jquery.tag-editor.js"></script>
 
@@ -202,7 +203,7 @@
                 /**上传图片相关配置*/
                 imageUpload: true,
                 imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-                imageUploadURL: "/smart-api/upload/editormdPic/",
+                imageUploadURL: "/Admin/content/uploadimage",
                 emoji: true,//emoji表情，默认关闭
                 taskList: true,
                 tocm: true, // Using [TOCM]

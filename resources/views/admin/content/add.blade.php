@@ -25,7 +25,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">URL</label>
                                 <div class="layui-input-block" style="padding-top: 10px">
-                                <span style="padding-top: 5px">http://127.0.0.1:8000/<input
+                                <span style="padding-top: 5px">{{env('SITE_HOST')}}/<input
                                             style="width: 25px;border-left: 0px;border-top: 0px;border-right: 0px"
                                             type="text" name="slug">/</span>
                                 </div>
