@@ -163,7 +163,6 @@ function send_em($da, $us)
 
 }
 
-
 function reply_em($da,$c)
 {
     \Mail::send('reply_em',

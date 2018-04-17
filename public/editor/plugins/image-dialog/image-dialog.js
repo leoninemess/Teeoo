@@ -166,6 +166,8 @@
 
                             json = (typeof JSON.parse !== "undefined") ? JSON.parse(json) : eval("(" + json + ")");
 
+                            $("#form1").append("<input type='text' hidden='hidden' name='cover' value="+json.url+">");
+
                             if(!settings.crossDomainUpload)
                             {
                               if (json.success === 1)
@@ -181,7 +183,6 @@
                             return false;
                         };
                     };
-
                     dialog.find("[type=\"submit\"]").bind("click", submitHandler).trigger("click");
 				});
             }

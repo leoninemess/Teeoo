@@ -6,7 +6,18 @@
     <meta name="keywords" content="@get('keywords')">
     <meta name="description" content="@get('description')">
     <meta name="author" content="@get('author')">
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
+    {!! Twitter::generate() !!}
+<!-- OR -->
+    {!! SEO::generate() !!}
 
+<!-- MINIFIED -->
+    {!! SEO::generate(true) !!}
+
+
+<!-- LUMEN -->
+    {!! app('seotools')->generate() !!}
     <title>@get('title')</title>
 
     @styles()

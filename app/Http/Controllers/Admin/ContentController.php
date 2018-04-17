@@ -68,7 +68,7 @@ class ContentController extends Controller
             "criticism" => $criticism,
             "html" => $request->post('my-editormd-html-code'),
             "text" => $request->post('my-editormd-markdown-doc'),//htmlentities()
-            "cover" => "默认的封面",//如果文章没有图片那么直接随机产生一张封面
+//            "cover" => "默认的封面",//如果文章没有图片那么直接随机产生一张封面
             //"summary" => str_limit($request->post('summary'), $limit = 100, $end = '...'),
             "user_id" => \Auth::user()->id,
             "types" => "1",

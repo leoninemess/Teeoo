@@ -3,7 +3,7 @@
     <div class="left-page-list mdui-col-md-8">
         <div class="nice">
             <div class="mdui-typo">
-                <h4>{!! env('SITE_NAME') !!}}</h4>
+                <h4>{!! env('SITE_NAME') !!}</h4>
                 <p>{!! env('SITE_describe') !!}</p>
             </div>
         </div>
@@ -11,7 +11,11 @@
             <div class="pageTag shadow-5">
                 <div class="cardImage">
                     <a href="/archives/{{$con->slug}}.html">
-                        <div class="cardImage-img" style="background: url('/themes/snow/assets/img/test.jpg')"></div>
+                        @if(is_null($con->cover))
+                            <div class="cardImage-img" style="background: url('/themes/snow/assets/img/test.jpg');width: 100%;height: 100%;background-repeat: no-repeat;background-position: center;background-size: cover;transition: all 0.5s;position: absolute;"></div>
+                            @else
+                            <div class="cardImage-img" style="background: url('{{$con->cover}}');width: 100%;height: 100%;background-repeat: no-repeat;background-position: center;background-size: cover;transition: all 0.5s;position: absolute;"></div>
+                        @endif
                         <div class="readMore">
                             <div><i class="mdui-icon material-icons">keyboard_arrow_left</i></div>
                             <div class="sqReadMore"></div>

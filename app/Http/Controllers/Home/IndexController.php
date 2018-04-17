@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Model\Comment;
 use App\Model\Content;
 use App\User;
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -21,6 +22,7 @@ class IndexController extends Controller
         \Theme::setKeywords(env('SITE_KEY'));
         $comments_desc = Comment::with("comment_content")->orderBy('created_at', 'desc')->get();
         $content_desc = Content::orderBy('created_at', 'desc')->get();
+        \SEOMeta::setTitle("Hello word");
         return \Theme::view('index', compact('content', 'comments_desc', 'content_desc'));
     }
 
@@ -36,10 +38,8 @@ class IndexController extends Controller
         $key = collect($content->tags)->map(function ($order) {
             return $order['name'];
         });
-        \Theme::setTitle($content->title);
-        \Theme::setAuthor('Teeoo');
-        \Theme::setKeywords(implode(",", $key->toArray()));
-        return \Theme::view("archives", compact('content', 'commentss'));
+        \SEOMeta::setTitle("777");
+        return \Theme::view("archives", compact('content', 'commentss','key'));
     }
 
     public function comment_create(Request $request, $post_id)
