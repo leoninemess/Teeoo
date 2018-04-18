@@ -50,22 +50,16 @@
                                         <td>{{$val->created_at->diffForHumans()}}</td>
                                         <td>
 
-
-
-                                            @if(is_null($val->deleted_at))
-                                                <a href="/Admin/comment/destroy/{{$val->id}}" class="layui-badge">删除</a>
-                                                <a href="/Admin/comment//{{$val->id}}" class="layui-badge layui-badge layui-bg-blue">编辑</a>
-                                                <a href="/Admin/comment//{{$val->id}}" class="layui-badge layui-bg-cyan">回复</a>
-                                            @else
-                                                <a href="/Admin/comment/restore/{{$val->id}}" class="layui-btn-sm layui-bg-blue">恢复</a>
-                                                <a href="/Admin/comment/delete/{{$val->id}}" class="layui-btn-sm  layui-badge">彻底删除</a>
-                                            @endif
+                                            <a href="/Admin/comment//{{$val->id}}" class="layui-badge layui-badge layui-bg-blue">编辑</a>
+                                            <a href="/Admin/comment//{{$val->id}}" class="layui-badge layui-bg-cyan">回复</a>
+                                            <a href="/Admin/comment/delete/{{$val->id}}" class="layui-btn-sm  layui-badge">删除</a>
 
 
                                         </td>
                                     </tr>
                                 @endforeach
                             </table>
+                            {!! $comment->links() !!}
                         </div>
                     </div>
                 </section>

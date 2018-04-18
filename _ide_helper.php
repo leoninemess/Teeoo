@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.16 on 2018-04-17 09:21:07.
+ * Generated for Laravel 5.6.17 on 2018-04-18 07:27:48.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -11569,13 +11569,13 @@ namespace Illuminate\Support\Facades {
          * @param array $rules
          * @param array $messages
          * @param array $customAttributes
-         * @return void 
+         * @return array 
          * @throws \Illuminate\Validation\ValidationException
          * @static 
          */ 
         public static function validate($data, $rules, $messages = array(), $customAttributes = array())
         {
-            \Illuminate\Validation\Factory::validate($data, $rules, $messages, $customAttributes);
+            return \Illuminate\Validation\Factory::validate($data, $rules, $messages, $customAttributes);
         }
         
         /**
@@ -14201,101 +14201,6 @@ namespace Artesaos\SEOTools\Facades {
  
 }
 
-namespace Indal\Markdown { 
-
-    class Facade {
-        
-        /**
-         * Parses a markdown string to HTML.
-         *
-         * @param string $text
-         * @return string 
-         * @static 
-         */ 
-        public static function parse($text)
-        {
-            return \Indal\Markdown\Parser::parse($text);
-        }
-        
-        /**
-         * Parses a single line of markdown to HTML.
-         *
-         * @param string $text
-         * @return string 
-         * @static 
-         */ 
-        public static function line($text)
-        {
-            return \Indal\Markdown\Parser::line($text);
-        }
-        
-        /**
-         * Escape any XSS attempts related to injecting JavaScript in anchor tags.
-         * 
-         * Will only escape the string if the escape option is set to true in the
-         * config.
-         *
-         * @param string $text
-         * @return string 
-         * @static 
-         */ 
-        public static function escape($text)
-        {
-            return \Indal\Markdown\Parser::escape($text);
-        }
-        
-        /**
-         * Start capturing output to be parsed.
-         *
-         * @return void 
-         * @static 
-         */ 
-        public static function begin()
-        {
-            \Indal\Markdown\Parser::begin();
-        }
-        
-        /**
-         * Stop capturing output, parse the string from markdown to HTML and return
-         * it. Throws an exception if outpout capturing hasn't been started yet.
-         *
-         * @throws \Indal\Markdown\Exceptions\InvalidTagException
-         * @return string 
-         * @static 
-         */ 
-        public static function end()
-        {
-            return \Indal\Markdown\Parser::end();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function setDriver($driver)
-        {
-            return \Indal\Markdown\Parser::setDriver($driver);
-        }
-        
-        /**
-         * Removes indentation according to the indentation of the first line, of
-         * the given markdown text. This prevents markdown from being rendered
-         * as code in unwanted places.
-         *
-         * @param string $text
-         * @return string 
-         * @static 
-         */ 
-        public static function removeLeadingWhitespace($text)
-        {
-            return \Indal\Markdown\Parser::removeLeadingWhitespace($text);
-        }
-         
-    }
- 
-}
-
 namespace Mews\Purifier\Facades { 
 
     class Purifier {
@@ -15252,6 +15157,25 @@ namespace  {
             }
          
             /**
+             * Add a subquery join clause to the query.
+             *
+             * @param \Closure|\Illuminate\Database\Query\Builder|string $query
+             * @param string $as
+             * @param string $first
+             * @param string|null $operator
+             * @param string|null $second
+             * @param string $type
+             * @param bool $where
+             * @return \Illuminate\Database\Query\Builder|static 
+             * @throws \InvalidArgumentException
+             * @static 
+             */ 
+            public static function joinSub($query, $as, $first, $operator = null, $second = null, $type = 'inner', $where = false)
+            {    
+                return \Illuminate\Database\Query\Builder::joinSub($query, $as, $first, $operator, $second, $type, $where);
+            }
+         
+            /**
              * Add a left join to the query.
              *
              * @param string $table
@@ -15282,6 +15206,22 @@ namespace  {
             }
          
             /**
+             * Add a subquery left join to the query.
+             *
+             * @param \Closure|\Illuminate\Database\Query\Builder|string $query
+             * @param string $as
+             * @param string $first
+             * @param string|null $operator
+             * @param string|null $second
+             * @return \Illuminate\Database\Query\Builder|static 
+             * @static 
+             */ 
+            public static function leftJoinSub($query, $as, $first, $operator = null, $second = null)
+            {    
+                return \Illuminate\Database\Query\Builder::leftJoinSub($query, $as, $first, $operator, $second);
+            }
+         
+            /**
              * Add a right join to the query.
              *
              * @param string $table
@@ -15309,6 +15249,22 @@ namespace  {
             public static function rightJoinWhere($table, $first, $operator, $second)
             {    
                 return \Illuminate\Database\Query\Builder::rightJoinWhere($table, $first, $operator, $second);
+            }
+         
+            /**
+             * Add a subquery right join to the query.
+             *
+             * @param \Closure|\Illuminate\Database\Query\Builder|string $query
+             * @param string $as
+             * @param string $first
+             * @param string|null $operator
+             * @param string|null $second
+             * @return \Illuminate\Database\Query\Builder|static 
+             * @static 
+             */ 
+            public static function rightJoinSub($query, $as, $first, $operator = null, $second = null)
+            {    
+                return \Illuminate\Database\Query\Builder::rightJoinSub($query, $as, $first, $operator, $second);
             }
          
             /**
@@ -16579,8 +16535,6 @@ namespace  {
     class Twitter extends \Artesaos\SEOTools\Facades\TwitterCard {}
 
     class SEO extends \Artesaos\SEOTools\Facades\SEOTools {}
-
-    class Markdown extends \Indal\Markdown\Facade {}
 
     class Purifier extends \Mews\Purifier\Facades\Purifier {}
  

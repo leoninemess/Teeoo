@@ -81,6 +81,7 @@
                                     </tr>
                                 @endforeach
                             </table>
+                            {!! $metas->links() !!}
                         </div>
                     </div>
                 </section>

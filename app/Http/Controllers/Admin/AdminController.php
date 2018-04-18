@@ -12,11 +12,28 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
+    /**
+     * Notes: 后台首页
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 11:52
+     * Function Name: index
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         return view("admin.index.index");
     }
 
+    /**
+     * Notes: 后台概要
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 11:52
+     * Function Name: baic
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function baic(Request $request)
     {
         $laravel = app();

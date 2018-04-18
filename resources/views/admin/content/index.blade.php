@@ -105,6 +105,7 @@
                                     </tr>
                                 @endforeach
                             </table>
+                            {!! $contents->links() !!}
                         </div>
                     </div>
                 </section>

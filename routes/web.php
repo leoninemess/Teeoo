@@ -10,22 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-//Route::get('/', function () {
-//    return array(
-//        "开发三件套" => array(
-//            "barryvdh/laravel-debugbar",
-//            "barryvdh/laravel-ide-helper",
-//            "mpociot/laravel-test-factory-helpe",
-//        ),
-//        "Theme" => "facuz/laravel-themes:^3.1",
-//        "Tree" => "jiaxincui/closure-table",
-//        "LogViewer" => "arcanedev/log-viewer",
-//        "pjax" => "spatie/laravel-pjax",
-//        "xss"=>"voku/anti-xss",
-//    );
-//});
-
+//Home
 Route::group(['middleware' => 'web', 'namespace' => 'Home'], function () {
     Route::get("/", "IndexController@index");
     //文章详情页
@@ -61,7 +46,7 @@ Route::group(['prefix' => 'Admin', 'namespace' => 'Admin'], function () {
     });
 });
 
-
+//Admin
 Route::group(["namespace" => "Admin", "prefix" => "Admin", "middleware" => "usercheck"], function () {
     //首页
     Route::get("/", "AdminController@index");
@@ -87,17 +72,9 @@ Route::group(["namespace" => "Admin", "prefix" => "Admin", "middleware" => "user
     Route::group(["prefix" => "tags"],function (){
         //标签首页
         Route::get("/","TagsController@index");
-        //添加标签
-        Route::post("store","TagsController@store");
         //修改标签
         Route::get("show/{id}","TagsController@show");
         Route::post("edit","TagsController@edit");
-        //软删除标签
-        Route::get("destroy/{id}","TagsController@destroy");
-        //恢复删除标签
-        Route::get("restore/{id}","TagsController@restore");
-        //彻底删除标签
-        Route::get("delete/{id}","TagsController@delete");
     });
     //主题
     Route::group(["prefix" => "themes"], function () {
@@ -129,12 +106,7 @@ Route::group(["namespace" => "Admin", "prefix" => "Admin", "middleware" => "user
     Route::group(["prefix" => "comment"], function () {
         //评论列表页
         Route::get("/", "CommentController@index");
-
-        //软删除
-        Route::get("destroy/{id}", "CommentController@destroy");
-        //恢复软删除
-        Route::get("restore/{id}", "CommentController@restore");
-        //彻底删除
+        //删除评论
         Route::get("delete/{id}", "CommentController@delete");
 
     });
@@ -147,6 +119,7 @@ Route::group(["namespace" => "Admin", "prefix" => "Admin", "middleware" => "user
     });
 });
 
-Route::get('/site',function (){
-    dump(env('SITE_picture'));
+
+Route::get("sitemap",function (){
+   \Spatie\Sitemap\SitemapGenerator::create('http://blog.dqtourism.cc/')->writeToFile(public_path('sitemap.xml'));
 });

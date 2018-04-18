@@ -10,27 +10,27 @@ use App\Http\Controllers\Controller;
 class MetasController extends Controller
 {
     /**
-     * Notes: 分类列表页
-     * User: iatw
-     * Date: 2018/4/1
-     * Time: 15:07
+     * Notes:分类列表页
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:30
      * Function Name: index
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $metas = Metas::withTrashed()->get();
-//        dump(Metas::all()->toTree());
+        $metas = Metas::withTrashed()->paginate(10);
         return view("admin.metas.index", compact('metas'));
     }
 
     /**
-     * Notes: 添加分类
-     * User: iatw
-     * Date: 2018/4/1
-     * Time: 15:06
+     * Notes:添加分类
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:30
      * Function Name: store
      * @param MestsRequests $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(MestsRequests $request)
     {
@@ -57,9 +57,9 @@ class MetasController extends Controller
 
     /**
      * Notes:编辑视图
-     * User: iatw
-     * Date: 2018/4/1
-     * Time: 17:23
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:31
      * Function Name: edit
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -73,9 +73,9 @@ class MetasController extends Controller
 
     /**
      * Notes:修改分类
-     * User: iatw
-     * Date: 2018/4/1
-     * Time: 17:23
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:31
      * Function Name: update
      * @param MestsRequests $request
      * @param $id
@@ -116,12 +116,12 @@ class MetasController extends Controller
 
     /**
      * Notes:软删除
-     * User: iatw
-     * Date: 2018/4/1
-     * Time: 17:29
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:32
      * Function Name: destroy
      * @param $id
-     * @return $this|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
@@ -160,12 +160,12 @@ class MetasController extends Controller
 
     /**
      * Notes:恢复软删除
-     * User: iatw
-     * Date: 2018/4/1
-     * Time: 17:35
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:32
      * Function Name: restore
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function restore($id)
     {
@@ -174,7 +174,6 @@ class MetasController extends Controller
         $me = $metas->restore();
         // 修复树关联
         Metas::find($id)->perfectTree();
-
         // 清理冗余的关联信息
         Metas::deleteRedundancies();
         return Prompt($me, "恢复数据", "/Admin/metas");
@@ -182,9 +181,9 @@ class MetasController extends Controller
 
     /**
      * Notes:彻底删除
-     * User: iatw
-     * Date: 2018/4/1
-     * Time: 17:36
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:33
      * Function Name: delete
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
@@ -193,7 +192,7 @@ class MetasController extends Controller
     {
         $delete = Metas::where("id", "=", $id)->forceDelete();
         // 修复树关联
-//        Metas::find($id)->perfectTree();
+        // Metas::find($id)->perfectTree();
 
         // 清理冗余的关联信息
         Metas::deleteRedundancies();

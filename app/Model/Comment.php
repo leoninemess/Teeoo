@@ -40,6 +40,10 @@ use Jiaxincui\ClosureTable\Traits\ClosureTable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Comment whereIsBlog($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Model\Comment withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Model\Comment withoutTrashed()
+ * @property int|null $parent 父评论id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Comment isolated()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Comment onlyRoot()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Comment whereParent($value)
  */
 class Comment extends Model
 {

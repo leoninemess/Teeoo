@@ -8,38 +8,40 @@ use App\Model\Metas;
 use App\Model\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Input;
 
 class ContentController extends Controller
 {
     /**
-     * Notes:文章首页
-     * User: iatw
-     * Date: 2018/4/2
-     * Time: 14:27
+     * Notes:文章列表页
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 11:57
      * Function Name: index
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
         //根据主模型加载出确切关系
-        $contents = Content::withTrashed()->with('metas')->with('user')->with('tags')->paginate(10);
+        $contents = Content::withTrashed()
+            ->with('metas')
+            ->with('user')
+            ->with('tags')
+            ->paginate(10);
         return view('admin.content.index', compact('contents'));
     }
 
     /**
-     * Notes:添加页面
-     * User: iatw
-     * Date: 2018/4/2
-     * Time: 14:41
+     * Notes:文章添加页面
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 11:57
      * Function Name: add
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function add()
     {
         //TODO:页面URL
-        $metas = Metas::all();
-        return view("admin.content.add", compact('metas'));
+        return view("admin.content.add");
     }
 
     /**
@@ -54,29 +56,33 @@ class ContentController extends Controller
     {
         //判断是否允许评论
         $criticism = array_key_exists("criticism", $request->post()) ? 1 : 2;
-        //拆分tags
-        $tags = explode(",", $request->post('tags'));
-        //记录tags
-        $ids = array();
-        foreach ($tags as $v) {
-            //不存在就添加 存在直接返回id
-            $res = Tag::firstOrCreate(["name" => $v, "hot" => 0]);
-            $ids[] = $res->id;
-        }
         $input = $request->except(['_token', 'tags', 'criticism', 'my-editormd-markdown-doc', 'my-editormd-html-code']);
         $content = Content::create(array_merge($input, [
             "criticism" => $criticism,
             "html" => $request->post('my-editormd-html-code'),
             "text" => $request->post('my-editormd-markdown-doc'),//htmlentities()
-//            "cover" => "默认的封面",//如果文章没有图片那么直接随机产生一张封面
+            //"cover" => "默认的封面",//如果文章没有图片那么直接随机产生一张封面
             //"summary" => str_limit($request->post('summary'), $limit = 100, $end = '...'),
             "user_id" => \Auth::user()->id,
-            "types" => "1",
+            "types" => "1",//'types:{"1":"文章","2":"页面","3":"说说"}'
         ]));
         //验证下别名是否为空,不为空不管 为空更新别名
-        $request->post('slug') ?? Content::where("id", "=", $content->id)->update(["slug" => $content->id]);
-        //添加关联表信息
-        $content->tags()->attach($ids);
+        $request->post('slug') ?? Content::where("id", "=", $content->id)
+            ->update(["slug" => $content->id]);
+        if (!is_null($request->post('tags'))) {
+            //拆分tags
+            $tags = explode(",", $request->post('tags'));
+            //记录tags
+            $ids = array();
+            foreach ($tags as $v) {
+                //不存在就添加 存在直接返回id
+                $res = Tag::firstOrCreate(["name" => $v]);
+                $ids[] = $res->id;
+            }
+            //添加关联表信息
+            $content->tags()->attach($ids);
+        }
+
         //更新分类下文章数量
         Metas::where("id", "=", $request->post("metas_id"))
             ->update(
@@ -88,42 +94,61 @@ class ContentController extends Controller
         return Prompt($content, "文章添加", "Admin/content");
     }
 
+    /**
+     * Notes:修改文章
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 12:29
+     * Function Name: edit
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function edit(Request $request, $id)
     {
         if ($request->isMethod('post')) {
             //判断是否允许评论
             $criticism = array_key_exists("criticism", $request->post()) ? 1 : 2;
-            //拆分tags
-            $tags = explode(",", $request->post('tags'));
-            //记录tags
-            $ids = array();
-            foreach ($tags as $v) {
-                //不存在就添加 存在直接返回id
-                $res = Tag::firstOrCreate(["name" => $v, "hot" => 0]);
-                $ids[] = $res->id;
-            }
             $input = $request->except(['_token', 'tags', 'criticism', 'my-editormd-markdown-doc', 'my-editormd-html-code']);
             $content = Content::where("id", "=", $id)->update(array_merge($input, [
                 "criticism" => $criticism,
                 "html" => $request->post('my-editormd-html-code'),
                 "text" => $request->post('my-editormd-markdown-doc'),//htmlentities()
-                "cover" => "默认的封面",//如果文章没有图片那么直接随机产生一张封面
                 "user_id" => \Auth::user()->id,
                 "types" => "1",
             ]));
             //验证下别名是否为空,不为空不管 为空更新别名
             $request->post('slug') ?? Content::where("id", "=", $content)->update(["slug" => $content]);
-
-            //判断标签是否存在，存在就不用添加，反之就添加数据
-            foreach ($ids as $ta) {
-                if (!Tag::find($ta)) {
-                    //添加关联表信息
-                    Content::find($id)->tags()->attach($ta);
+            if (!is_null($request->post('tags'))) {
+                //拆分tags
+                $tags = explode(",", $request->post('tags'));
+                //记录tags
+                $ids = array();
+                foreach ($tags as $v) {
+                    //不存在就添加 存在直接返回id
+                    $res = Tag::firstOrCreate(["name" => $v]);
+                    $ids[] = $res->id;
                 }
+                //使用集合取出所有的id
+                $y = collect(Content::find($id)->tags()->get())->map(function ($k) {
+                    return $k['id'];
+                });
+                //判断原来的tag是否多余现在提交的tag
+                //如果原来的比现在的多就删除原来多余的关系
+                //如果原来的比现在的少那么那么清除之前所有的添加现在的tag
+                if (count($y->toArray()) > count($ids)) {
+                    Content::find($id)->tags()->detach(array_diff($y->toArray(), $ids));
+                } else {
+                    Content::find($id)->tags()->detach();
+                    Content::find($id)->tags()->attach($ids);
+                }
+//                dump($y->toArray());
+//                dump($ids);
+//                dump(array_diff($y->toArray(), array_intersect_assoc($y->toArray(), $ids)));
+//                Content::find($id)->tags()->detach();
+//                dump(count($y->toArray()) > count($ids));
             }
-
             return Prompt($content, "文章修改", "Admin/content");
-
         } else {
             //根据id查询当前这条数据
             $contents = Content::with('metas')->with('user')->with('tags')->find($id);
@@ -132,6 +157,15 @@ class ContentController extends Controller
         }
     }
 
+    /**
+     * Notes:软删除文章
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:23
+     * Function Name: destroy
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($id)
     {
         //判断软删除文章是否成功
@@ -155,13 +189,22 @@ class ContentController extends Controller
             );
         } else {
             return redirect("/Admin/content")->with([
-                    'message' => "数据删除失败！！",
+                    'message' => "文章删除失败！！",
                     'icon' => '5'
                 ]
             );
         }
     }
 
+    /**
+     * Notes:恢复 被软删除的文章
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:24
+     * Function Name: restore
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function restore($id)
     {
         $content = Content::withTrashed()->find($id);
@@ -190,14 +233,33 @@ class ContentController extends Controller
         }
     }
 
+    /**
+     * Notes:彻底删除文章
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:26
+     * Function Name: delete
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function delete($id)
     {
         $content = Content::where("id", "=", $id)->forceDelete();
         //同时把该文章的评论数据一起删除
         Comment::where("content_id", "=", $id)->forceDelete();
+
         return Prompt($content, "文章已彻底删除", "Admin/content");
     }
 
+    /**
+     * Notes:editor上传图片
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:27
+     * Function Name: uploadimage
+     * @param Request $request
+     * @return string
+     */
     public function uploadimage(Request $request)
     {
         $message = "";

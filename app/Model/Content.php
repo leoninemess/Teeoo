@@ -91,8 +91,4 @@ class Content extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
-    public function visitors()
-    {
-        return $this->hasMany(VisitorRegistry::class);
-    }
 }

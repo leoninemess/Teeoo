@@ -8,10 +8,10 @@ use App\Http\Controllers\Controller;
 class LoginController extends Controller
 {
     /**
-     * Notes: 首页视图
-     * User: iatw
-     * Date: 2018/4/1
-     * Time: 13:57
+     * Notes:登录视图
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:29
      * Function Name: index
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -22,9 +22,9 @@ class LoginController extends Controller
 
     /**
      * Notes:登录
-     * User: iatw
-     * Date: 2018/4/1
-     * Time: 13:56
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:29
      * Function Name: login
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -32,7 +32,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $input = $request->except(['_token']);
-//        dump(\Auth::attempt($input));
+        //        dump(\Auth::attempt($input));
         if (\Auth::attempt($input)) {
             // 认证通过...
             return redirect("/Admin/");
@@ -43,10 +43,11 @@ class LoginController extends Controller
 
     /**
      * Notes:注销登录
-     * User: iatw
-     * Date: 2018/4/1
-     * Time: 13:59
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:30
      * Function Name: logout
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function logout()
     {

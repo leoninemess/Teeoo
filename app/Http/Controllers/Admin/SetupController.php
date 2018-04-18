@@ -2,19 +2,31 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Setup;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class SetupController extends Controller
 {
+    /**
+     * Notes:基本设置
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:34
+     * Function Name: Basicsetup
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function Basicsetup(Request $request)
     {
         if ($request->isMethod('post')) {
             $input = $request->except(['_token']);
 
             set_Env($input);
+
+            \Artisan::call('config:clear');
+            \Artisan::call('cache:clear');
+            \Artisan::call('view:clear');
 
             return redirect("/Admin/Setup/Basicsetup")->with([
                     'message' => "数据修改成功！！",
@@ -26,6 +38,15 @@ class SetupController extends Controller
         }
     }
 
+    /**
+     * Notes:用户设置
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:38
+     * Function Name: user
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function user(Request $request)
     {
         if ($request->isMethod('post')) {

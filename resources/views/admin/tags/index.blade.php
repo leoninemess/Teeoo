@@ -2,6 +2,7 @@
 
 @section("css")
     <link rel="stylesheet" type="text/css" href="/admin/css/main.css?v2.0.1-simple" media="all">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 @endsection
 @section('content')
     <div class="layui-fluid larry-wrapper">
@@ -31,7 +32,6 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>名称</th>
-                                    <th>热度</th>
                                     <th>添加时间</th>
                                     <th>最后更新时间</th>
                                     <th>操作</th>
@@ -41,23 +41,17 @@
                                     <tr>
                                         <td>{{$val->id}}</td>
                                         <td>{{$val->name}}</td>
-                                        <td>{{$val->hot}}</td>
                                         <td>{{$val->created_at}}</td>
                                         <td>{{$val->updated_at}}</td>
                                         <td>
-                                            @if(is_null($val->deleted_at))
-                                                <a data-id="{{$val->id}}" data-params='{"content": ".edit-subcat","area":"350px,230px", "title": "编辑标签"}'
-                                                   href="javascript:;"
-                                                   class="layui-btn-sm modal layui-badge layui-badge layui-bg-blue edit">编辑</a>
-                                                <a href="/Admin/tags/destroy/{{$val->id}}" class="layui-btn-sm layui-badge">删除</a>
-                                            @else
-                                                <a href="/Admin/tags/restore/{{$val->id}}" class="layui-btn-sm layui-bg-blue">恢复</a>
-                                                <a href="/Admin/tags/delete/{{$val->id}}" class="layui-btn-sm  layui-badge">彻底删除</a>
-                                            @endif
+                                            <a data-id="{{$val->id}}" data-params='{"content": ".edit-subcat","area":"350px,230px", "title": "编辑标签"}'
+                                               href="javascript:;"
+                                               class="layui-btn-sm modal layui-badge layui-badge layui-bg-blue edit">编辑</a>
                                         </td>
                                     </tr>
                                 @endforeach
                             </table>
+                            {!! $tags->links() !!}
                         </div>
                     </div>
                 </section>

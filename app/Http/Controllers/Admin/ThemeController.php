@@ -8,9 +8,9 @@ class ThemeController extends Controller
 {
     /**
      * Notes:主题列表
-     * User: iatw
-     * Date: 2018/4/2
-     * Time: 14:09
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:41
      * Function Name: index
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -23,8 +23,21 @@ class ThemeController extends Controller
         return view("admin.theme.index", compact('array'));
     }
 
+    /**
+     * Notes:设置主题
+     * User: Teeoo
+     * Date: 2018/4/18
+     * Time: 14:41
+     * Function Name: set_theme
+     * @param $theme
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function set_theme($theme)
     {
-        return Prompt(set_Env(["APP_THEME" => $theme]), "主题修改", "Admin/themes/");
+        set_Env(["APP_THEME" => $theme]);
+        \Artisan::call('config:clear');
+        \Artisan::call('cache:clear');
+        \Artisan::call('view:clear');
+        return Prompt(1, "主题修改", "Admin/themes/");
     }
 }

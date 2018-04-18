@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Home;
 use App\Model\Comment;
 use App\Model\Content;
 use App\User;
-use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,12 +16,23 @@ class IndexController extends Controller
             ->with('tags')
             ->with('user')
             ->get();
-        \Theme::setTitle(env('SITE_NAME'));
-        \Theme::setAuthor('Teeoo');
-        \Theme::setKeywords(env('SITE_KEY'));
         $comments_desc = Comment::with("comment_content")->orderBy('created_at', 'desc')->get();
         $content_desc = Content::orderBy('created_at', 'desc')->get();
-        \SEOMeta::setTitle("Hello word");
+
+        \SEOMeta::setTitle(env("SITE_NAME"));
+        \SEOMeta::setDescription(env('SITE_describe'));
+        \SEOMeta::setCanonical(env('SITE_address'));
+        \SEOMeta::addKeyword([env('SITE_KEY')]);
+
+        \OpenGraph::setDescription(env('SITE_describe'));
+        \OpenGraph::setTitle(env("SITE_NAME"));
+        \OpenGraph::setUrl(env('SITE_address'));
+        \OpenGraph::addProperty('type', 'articles');
+
+        \OpenGraph::addProperty('type', 'article');
+        \OpenGraph::addProperty('locale', 'pt-br');
+        \OpenGraph::addProperty('locale:alternate', ['pt-pt', 'en-us']);
+
         return \Theme::view('index', compact('content', 'comments_desc', 'content_desc'));
     }
 
@@ -35,10 +45,33 @@ class IndexController extends Controller
 //            ->with('comments')
             ->first();
         $commentss = Comment::where("content_id", "=", $content->id)->get()->toTree();
-        $key = collect($content->tags)->map(function ($order) {
-            return $order['name'];
+        $key = collect($content->tags)->map(function ($k) {
+            return $k['name'];
         });
-        \SEOMeta::setTitle("777");
+
+        \SEOMeta::setTitle($content->title);
+        \SEOMeta::setDescription(str_limit($content->text,"100","... ..."));
+        \SEOMeta::setCanonical(env('SITE_address'));
+        \SEOMeta::addKeyword($key);
+
+        \OpenGraph::setDescription(str_limit($content->text,"100","... ..."));
+        \OpenGraph::setTitle($content->title);
+        \OpenGraph::setUrl(env('SITE_address'));
+        \OpenGraph::addProperty('type', 'articles');
+        \OpenGraph::addProperty('type', 'article');
+        \OpenGraph::addProperty('locale', 'pt-br');
+        \OpenGraph::addProperty('locale:alternate', ['pt-pt', 'en-us']);
+
+        \OpenGraph::setTitle($content->title)
+            ->setDescription(str_limit($content->text,"100","... ..."))
+            ->setType('article')
+            ->setArticle([
+                'published_time' => $content->created_at,
+                'modified_time' => $content->updated_at,
+                'author' => $content->user->name,
+                'tag' => implode("/",$key->toArray())
+            ]);
+
         return \Theme::view("archives", compact('content', 'commentss','key'));
     }
 
