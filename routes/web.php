@@ -49,7 +49,7 @@ Route::group(['prefix' => 'Admin', 'namespace' => 'Admin'], function () {
 //Admin
 Route::group(["namespace" => "Admin", "prefix" => "Admin", "middleware" => "usercheck"], function () {
     //首页
-    Route::get("/", "AdminController@index");
+    Route::get("index", "AdminController@index");
     Route::get("baic", "AdminController@baic");
     //分类
     Route::group(["prefix" => "metas"], function () {
@@ -122,4 +122,23 @@ Route::group(["namespace" => "Admin", "prefix" => "Admin", "middleware" => "user
 
 Route::get("sitemap",function (){
    \Spatie\Sitemap\SitemapGenerator::create('http://blog.dqtourism.cc/')->writeToFile(public_path('sitemap.xml'));
+});
+
+Route::get("/Teeoo",function (){
+    return json_encode(array(
+        "开发三件套"=>array(
+            "barryvdh"=>array(
+                "debugbar"=>"laravel-debugbar",
+                "ide-helper"=>"laravel-ide-helper",
+                "factory-helper"=>"laravel-test-factory-helper"
+            ),
+            "Seo"=>"artesaos/seotools",
+            "Themes"=>"facuz/laravel-themes",
+            "Xss"=>"voku/anti-xss",
+            "Gravatar"=>"thomaswelton/laravel-gravatar",
+            "Sitemap"=>"spatie/laravel-sitemap",
+            "Pjax"=>"spatie/laravel-pjax",
+            "Tree"=>"jiaxincui/closure-table",
+        )
+    ));
 });

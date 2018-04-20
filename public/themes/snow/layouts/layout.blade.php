@@ -25,7 +25,6 @@
 </body>
 <script>
     var $$ = mdui.JQ;
-
     $(function () {
         window.scrollBy(0, -90);
         console.clear();

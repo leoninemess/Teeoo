@@ -1,13 +1,93 @@
-"# Teeoo" 
 ## Hello Teeoo
 
-> 若你花了时间了解你的梦想是什么，以及你真正想要的东西，你必须知道，你永远都有事情要做，而你得成为最努力的人。
+> 幸有你来,不悔初见。
 
 ------------
 
-### 新 博 客,自 豪 的 采 用 了 自 己 开 发 的 博 客！ :tw-1f62c:
+### 新 博 客,自 豪 的 采 用 了 自 己 开 发 的 博 客！ 
+	
 
-记录下开发博客用到的技术
+### 食用方法
+
+- 先进行克隆
+    >   git clone https://github.com/iatw/Teeoo.git
+- 解决依赖
+	>	composer install
+- 建立.env文件
+	>	cp .env.example .env
+- 生成key
+	>	php artisan key:generate
+- 在env文件中设置以下信息
+  - #### 主题和程序版本号
+    - APP_THEME=snow
+    - Edition=v1.0
+    
+  - #### 数据库配置信息
+    - DB_CONNECTION=mysql
+    - DB_HOST=127.0.0.1
+    - DB_PORT=3306
+    - DB_DATABASE=teeoo
+    - DB_USERNAME=root
+    - DB_PASSWORD=
+    
+  - #### 邮件配置信息
+    - MAIL_DRIVER=smtp
+    - MAIL_HOST=smtp.163.com
+    - MAIL_PORT=465
+    - MAIL_USERNAME=15082747556@163.com
+    - MAIL_PASSWORD=15082747556a
+    - MAIL_ENCRYPTION=ssl
+    - MAIL_FROM_ADDRESS=15082747556@163.com
+    - MAIL_FROM_NAME=Teeoo
+    
+  - #### 站点配置信息
+    - SITE_KEY=这里填写你博客的keyword
+    - SITE_HOST = 这里天下你博客的域名
+    - SITE_NAME= 这里填写你博客名字
+    - SITE_custom= 这里填写你自定义上传文件的格式
+    - SITE_address= 这里填写你博客的地址
+    - picture= gif,jpg,jpeg,png,tiff,bmp
+    - SITE_archives=txt,doc,docx,xls,xlsx,ppt,pptx,zip,rar,pdf
+    - SITE_Multi-Media=mp3,wmv,wma,rmvb,rm,avi,flv
+    - SITE_checkbox = 1
+    - SITE_describe= 这里填写你博客的描述
+    - SITE_Bottomcode= 底部代码
+    - Be_limited_to_ip= 禁止访问博客的ip使用,分开
+    - Number_of_logins= 最大登录失败次数
+
+- 执行 migrate 创建数据库
+	>	php artisan migrate
+- 执行 seeder 创建默认管理员账号
+	>	php artisan db:
+
+
+#### Web 服务器配置
+
+###### Apache
+
+框架中自带的 public/.htaccess 文件支持隐藏 URL 中的 index.php，如过你的 Laravel 应用使用 Apache 作为服务器，需要先确保 Apache 启用了mod_rewrite 模块以支持 .htaccess 解析。
+
+如果 Laravel 自带的 .htaccess 文件不起作用，试试将其中内容做如下替换：
+
+    Options +FollowSymLinks
+    RewriteEngine On
+    
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+
+###### Nginx
+
+如果你使用的是 Nginx，使用如下站点配置指令就可以支持 URL 美化：
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+	
+当然，如果使用 Homestead 或 Valet 的话，以上配置已经为你配置好，无需额外操作。
+
+> 到了这里如果不出意外的话程序应该能正常跑起来了 ,当然你也可以使用laravel内置的web服务器:`php artisan serve`来运行程序,本地推荐这样做,服务器上还是推荐Nginx
+
 
 一.后端
 - 	环境:`Nginx+ PHP + MySQL`
@@ -19,60 +99,26 @@
 所用到的`composer`包:
 ```json
 {
-        "barryvdh/laravel-ide-helper": "^2.4",
-        "ezyang/htmlpurifier": "^4.10",
-        "facuz/laravel-themes": "^3.1",
-        "fideloper/proxy": "^4.0",
-        "guzzlehttp/guzzle": "^6.3",
-        "jiaxincui/closure-table": "^2.1",
-        "jildertmiedema/laravel-plupload": "^0.4.1",
-        "laravel/framework": "5.6.*",
-        "laravel/tinker": "^1.0",
-        "mews/purifier": "^2.1",
-        "mpociot/laravel-test-factory-helper": "^0.5.0",
-        "overtrue/laravel-lang": "~3.0",
-        "spatie/laravel-pjax": "^1.3",
-        "thomaswelton/laravel-gravatar": "~1.0",
-        "voku/anti-xss": "^4.0"
+    "开发三件套":{
+        "barryvdh":{
+            "debugbar":"laravel-debugbar",
+            "ide-helper":"laravel-ide-helper",
+            "factory-helper":"laravel-test-factory-helper"
+        },
+        "Seo":"artesaos/seotools",
+        "Themes":"facuz/laravel-themes",
+        "Xss":"voku/anti-xss",
+        "Gravatar":"thomaswelton/laravel-gravatar",
+        "Sitemap":"spatie/laravel-sitemap",
+        "Pjax":"spatie/laravel-pjax",
+        "Tree":"jiaxincui/closure-table"
+    }
 }
 ```
 
 二.前端
+
 > 前端默认使用了**@往秋不往冬月**开发的typecho主题,如果你熟悉PHP你完全可以定制你的主题
-
-使用命令行执行
-```php
-php artisan theme:create default
-```
-这将创建以下目录结构：
-
-```markdown
-├── public/
-    └── themes/
-	└── default/
-		├── assets
-        	|	├── css/
-			|	├── img/
-            |	└── js/
-        ├── layouts/
-        	├── partials/
-        └── sections/
-            ├── views/
-	        └── widgets/
-```
-然后你就可以开始定制你的主题了
-
-### 前台界面展示
-
-![前台界面](http://blog.dqtourism.cc/uploads/article/20180417/2018-04-17-03-25-55-5ad569439e16d.png "前台界面")
-
-![前台界面](http://blog.dqtourism.cc/uploads/article/20180417/2018-04-17-03-26-13-5ad5695578372.png "前台界面")
-
-### 后台界面展示
-
-![后台界面](http://blog.dqtourism.cc/uploads/article/20180417/2018-04-17-03-26-30-5ad56966dd88b.png "后台界面")
-
-![后台界面](http://blog.dqtourism.cc/uploads/article/20180417/2018-04-17-03-26-49-5ad569793ce21.png "后台界面")
 
 ### 开发日志
 - Teeoo 2018-04-13
@@ -87,4 +133,9 @@ php artisan theme:create default
 	- 	更新个人设置
 	- 	修改文章修改BUG
 	- 	一些配置放入.env中
+- Teeoo 2018-04-18
+	-	加入SEO
+	-	加入Sitemap
+- Teeoo 2018-04-20
+	-	更新READNE.md
 
