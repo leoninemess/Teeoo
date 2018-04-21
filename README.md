@@ -44,7 +44,7 @@
     - SITE_KEY=这里填写你博客的keyword
     - SITE_HOST = 这里天下你博客的域名
     - SITE_NAME= 这里填写你博客名字
-    - SITE_custom= 这里填写你自定义上传文件的格式
+    - SITE_custom= 这里填写你自定义上传文件的格式
     - SITE_address= 这里填写你博客的地址
     - picture= gif,jpg,jpeg,png,tiff,bmp
     - SITE_archives=txt,doc,docx,xls,xlsx,ppt,pptx,zip,rar,pdf
@@ -138,4 +138,6 @@
 	-	加入Sitemap
 - Teeoo 2018-04-20
 	-	更新READNE.md
+- Teeoo 2018-04-21
+   	-	移植**@贫困的蚊子**的Candy-Rebirth主题
 

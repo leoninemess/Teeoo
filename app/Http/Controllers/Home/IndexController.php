@@ -35,7 +35,7 @@ class IndexController extends Controller
 
         return \Theme::view('index', compact('content', 'comments_desc', 'content_desc'));
     }
-
+    
     public function archives(Request $request, $slug)
     {
         $content = Content::where("slug", "=", $slug)
