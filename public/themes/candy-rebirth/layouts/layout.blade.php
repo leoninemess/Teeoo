@@ -6,8 +6,12 @@
         <meta name="keywords" content="@get('keywords')">
         <meta name="description" content="@get('description')">
         <meta name="author" content="@get('author')">
-        <title>@get('title')</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <link rel="stylesheet/less" href="/themes/candy-rebirth/assets/css/w.less">
+        <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+        <link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/vs2015.min.css" rel="stylesheet">
+        <title>@get('title')</title>
         @styles()
         <style>
             .page-container{

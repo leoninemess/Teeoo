@@ -7,7 +7,7 @@ return array(
 	| Inherit from another theme
 	|--------------------------------------------------------------------------
 	|
-	| Set up inherit from another if the file is not exists, this
+	| Set up inherit from another if the file is not exists, this 
 	| is work with "layouts", "partials", "views" and "widgets"
 	|
 	| [Notice] assets cannot inherit.
@@ -21,7 +21,7 @@ return array(
 	| Listener from events
 	|--------------------------------------------------------------------------
 	|
-	| You can hook a theme when event fired on activities this is cool
+	| You can hook a theme when event fired on activities this is cool 
 	| feature to set up a title, meta, default styles and scripts.
 	|
 	| [Notice] these event can be override by package config.
@@ -42,17 +42,14 @@ return array(
 										['style',
                                             [
                                                 'css/materialdesignicons.min.css',
-                                                'css/style.css',
-//                                                'css/w.less?v2',
                                             ]
-
                                         ],
 										['script',
                                             [
                                                 'js/plugins.js',
                                                 'js/m.js',
                                                 'js/less.min.js',
-
+//                                                'js/script.js',
                                             ]
                                         ]
 									 ]);
@@ -67,7 +64,7 @@ return array(
 
 			// Or you may use this event to set up your assets.
 			/*
-			$asset->themePath()->add('core', 'core.js');
+			$asset->themePath()->add('core', 'core.js');			
 			$asset->add([
 							['jquery', 'vendor/jquery/jquery.min.js'],
 							['jquery-ui', 'vendor/jqueryui/jquery-ui.min.js', ['jquery']]

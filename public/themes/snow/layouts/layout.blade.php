@@ -27,7 +27,6 @@
     var $$ = mdui.JQ;
     $(function () {
         window.scrollBy(0, -90);
-        console.clear();
         console.log("\n %c Teeoo v1.0 Pro %c byTeeoo<www.iatw.cc>\n\n", "color:#444;background:#eee;padding:5px 0;", "color:#eee;background:#444;padding:5px 0;");
         // pjax
         $(document).on('pjax:start', function () {

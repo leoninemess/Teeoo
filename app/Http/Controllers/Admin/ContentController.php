@@ -8,6 +8,7 @@ use App\Model\Metas;
 use App\Model\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use phpDocumentor\Reflection\Types\Null_;
 
 class ContentController extends Controller
 {
@@ -56,12 +57,12 @@ class ContentController extends Controller
     {
         //判断是否允许评论
         $criticism = array_key_exists("criticism", $request->post()) ? 1 : 2;
-        $input = $request->except(['_token', 'tags', 'criticism', 'my-editormd-markdown-doc', 'my-editormd-html-code']);
+        $input = $request->except(['_token', 'cover', 'tags', 'criticism', 'my-editormd-markdown-doc', 'my-editormd-html-code']);
         $content = Content::create(array_merge($input, [
             "criticism" => $criticism,
             "html" => $request->post('my-editormd-html-code'),
             "text" => $request->post('my-editormd-markdown-doc'),//htmlentities()
-            //"cover" => "默认的封面",//如果文章没有图片那么直接随机产生一张封面
+            "cover" => $request->post('cover') ?? null,
             //"summary" => str_limit($request->post('summary'), $limit = 100, $end = '...'),
             "user_id" => \Auth::user()->id,
             "types" => "1",//'types:{"1":"文章","2":"页面","3":"说说"}'
@@ -109,7 +110,7 @@ class ContentController extends Controller
         if ($request->isMethod('post')) {
             //判断是否允许评论
             $criticism = array_key_exists("criticism", $request->post()) ? 1 : 2;
-            $input = $request->except(['_token', 'tags', 'criticism', 'my-editormd-markdown-doc', 'my-editormd-html-code']);
+            $input = $request->except(['_token', 'cover','tags', 'criticism', 'my-editormd-markdown-doc', 'my-editormd-html-code']);
             $content = Content::where("id", "=", $id)->update(array_merge($input, [
                 "criticism" => $criticism,
                 "html" => $request->post('my-editormd-html-code'),
