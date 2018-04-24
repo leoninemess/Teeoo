@@ -72,7 +72,7 @@ class IndexController extends Controller
                 'tag' => implode("/",$key->toArray())
             ]);
 
-        return \Theme::view("archives", compact('content', 'commentss','key'));
+        return \Theme::view("archives");
     }
 
     public function comment_create(Request $request, $post_id)
