@@ -120,7 +120,6 @@ return [
     */
 
     'providers' => [
-        JildertMiedema\LaravelPlupload\LaravelPluploadServiceProvider::class,
         Facuz\Theme\ThemeServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
         Mpociot\LaravelTestFactoryHelper\TestFactoryHelperServiceProvider::class,
@@ -148,8 +147,7 @@ return [
         Illuminate\Redis\RedisServiceProvider::class,
         Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
         Illuminate\Session\SessionServiceProvider::class,
-//        Illuminate\Translation\TranslationServiceProvider::class,
-        Overtrue\LaravelLang\TranslationServiceProvider::class,
+        Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
@@ -217,7 +215,6 @@ return [
 
         'Theme' => Facuz\Theme\Facades\Theme::class,
         'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class,
-        'Plupload' => JildertMiedema\LaravelPlupload\Facades\Plupload::class,
 
         // other Facades ommited
         'SEOMeta'   => Artesaos\SEOTools\Facades\SEOMeta::class,
