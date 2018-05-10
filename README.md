@@ -7,6 +7,20 @@
 ### 新 博 客,自 豪 的 采 用 了 自 己 开 发 的 博 客！ 
 	
 
+
+### 后台预览
+
+![](https://teeoo.cn/uploads/article/20180510/2018-05-10-09-23-51-5af40fa722516.png)
+![](https://teeoo.cn/uploads/article/20180510/2018-05-10-09-24-00-5af40fb0e93e2.png)
+![](https://teeoo.cn/uploads/article/20180510/2018-05-10-09-24-11-5af40fbb74121.png)
+![](https://teeoo.cn/uploads/article/20180510/2018-05-10-09-24-18-5af40fc288ce4.png)
+
+### 前台预览
+
+![](https://teeoo.cn/uploads/article/20180510/2018-05-10-09-29-35-5af410ff8fdae.jpg)
+![](https://teeoo.cn/uploads/article/20180510/2018-05-10-09-29-43-5af41107ea649.jpg)
+![](https://teeoo.cn/uploads/article/20180510/2018-05-10-09-29-52-5af411109510c.jpg)
+
 ### 食用方法
 
 - 先进行克隆
