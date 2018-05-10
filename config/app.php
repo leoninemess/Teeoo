@@ -120,7 +120,6 @@ return [
     */
 
     'providers' => [
-        Barryvdh\Debugbar\ServiceProvider::class,
         Facuz\Theme\ThemeServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
         Mpociot\LaravelTestFactoryHelper\TestFactoryHelperServiceProvider::class,
@@ -223,7 +222,6 @@ return [
         'Twitter'   => Artesaos\SEOTools\Facades\TwitterCard::class,
         // or
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

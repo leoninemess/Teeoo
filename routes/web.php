@@ -125,26 +125,20 @@ Route::get("sitemap",function (){
 });
 
 Route::get("/Teeoo",function (){
-//    return json_encode(array(
-//        "开发三件套"=>array(
-//            "barryvdh"=>array(
-//                "debugbar"=>"laravel-debugbar",
-//                "ide-helper"=>"laravel-ide-helper",
-//                "factory-helper"=>"laravel-test-factory-helper"
-//            ),
-//            "Seo"=>"artesaos/seotools",
-//            "Themes"=>"facuz/laravel-themes",
-//            "Xss"=>"voku/anti-xss",
-//            "Gravatar"=>"thomaswelton/laravel-gravatar",
-//            "Sitemap"=>"spatie/laravel-sitemap",
-//            "Pjax"=>"spatie/laravel-pjax",
-//            "Tree"=>"jiaxincui/closure-table",
-//        )
-//    ));
-
-    $archives = \App\Model\Content::selectRaw('year(created_at)  year, monthname(created_at) month, count(*) published')->groupBy('year','month')->orderByRaw('min(created_at) desc')->get();
-
-    dump(\App\Model\Content::latest()->whereMonth('created_at',\Carbon\Carbon::parse("2018-4-23")->month)->get());
-
-
+    return json_encode(array(
+        "开发三件套"=>array(
+            "barryvdh"=>array(
+                "debugbar"=>"laravel-debugbar",
+                "ide-helper"=>"laravel-ide-helper",
+                "factory-helper"=>"laravel-test-factory-helper"
+            ),
+            "Seo"=>"artesaos/seotools",
+            "Themes"=>"facuz/laravel-themes",
+            "Xss"=>"voku/anti-xss",
+            "Gravatar"=>"thomaswelton/laravel-gravatar",
+            "Sitemap"=>"spatie/laravel-sitemap",
+            "Pjax"=>"spatie/laravel-pjax",
+            "Tree"=>"jiaxincui/closure-table",
+        )
+    ));
 });
